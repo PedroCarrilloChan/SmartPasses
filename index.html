@@ -1,16 +1,604 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Passes - Marketing de Billetera Móvil</title>
+    <!-- Meta Descripción para SEO -->
+    <meta name="description" content="Transforma tu marketing con Smart Passes. Crea pases digitales, cupones y tarjetas de lealtad para Apple Wallet y Google Wallet y conecta con tus clientes.">
+
+    <!-- Carga optimizada de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap">
+
+    <!-- Carga de CSS de Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Estilos base y configuración de la fuente */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Tailwind gray-900 */
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Nuevo contenedor para la perspectiva 3D */
+        #perspective-wrapper {
+            perspective: 3000px;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Canvas para el polvo digital */
+        #digital-dust-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Clase para el efecto de cristal (Glassmorphism) */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animación para aparecer gradualmente */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Círculos decorativos del fondo con nuevos colores del branding */
+        .background-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.4;
+            z-index: -2;
+            transition: transform 0.4s ease-out;
+        }
+        .shape1 { width: 400px; height: 400px; background: #2563eb; top: -100px; left: -100px; }
+        .shape2 { width: 350px; height: 350px; background: #10b981; bottom: -50px; right: -80px; }
+        .shape3 { width: 250px; height: 250px; background: #0ea5e9; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        /* Contenedor principal de la página para el efecto 3D */
+        #page-content {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform;
+        }
+
+        /* ===== ESTILOS PARA LA NUEVA SECCIÓN DE ESTADÍSTICAS ===== */
+        .stat-card {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .stat-card.is-visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ===== ESTILOS PARA LA GALERÍA ===== */
+        .gallery-container {
+            display: flex;
+            padding-bottom: 2rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .gallery-container::-webkit-scrollbar { display: none; }
+        .gallery-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            padding: 0 2rem;
+            perspective: 1000px;
+        }
+        .gallery-card {
+            flex-shrink: 0;
+            width: 220px;
+            transition: transform 0.5s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* ===== ESTILOS PARA LA TARJETA INTERACTIVA 3D ===== */
+        .flip-card-container {
+            perspective: 1500px;
+        }
+        .flip-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card-container:hover .flip-card,
+        .flip-card.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Animación para la flecha roja */
+        @keyframes bounce-horizontal {
+          0%, 100% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(6px);
+          }
+        }
+        .animate-bounce-horizontal {
+          animation: bounce-horizontal 1.5s infinite;
+        }
+    </style>
 </head>
+<body class="antialiased relative">
 
-<body>
-  Hello world
-  <script src="script.js"></script>
+    <!-- Canvas para el efecto de polvo digital -->
+    <canvas id="digital-dust-canvas"></canvas>
+
+    <!-- Formas de fondo para el efecto visual -->
+    <div class="background-shape shape1"></div>
+    <div class="background-shape shape2"></div>
+    <div class="background-shape shape3"></div>
+
+    <div id="perspective-wrapper">
+        <div id="page-content" class="relative min-h-screen w-full px-4 sm:px-6 lg:px-8 z-10">
+
+            <!-- ===== Header ===== -->
+            <header class="w-full max-w-7xl mx-auto py-6">
+                <nav class="flex items-center justify-between">
+                    <a href="#" class="text-2xl font-bold tracking-tight">
+                        <span class="text-white">Smart</span><span class="text-emerald-400">Passes</span>
+                    </a>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Servicios</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Precios</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Nosotros</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Contacto</a>
+                    </div>
+                    <button class="hidden md:inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-lg transition-transform duration-300 hover:scale-105">
+                        Iniciar Sesión
+                    </button>
+                    <button class="md:hidden text-white" aria-label="Abrir menú">
+                        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </nav>
+            </header>
+
+            <!-- ===== Hero Section ===== -->
+            <main class="w-full max-w-7xl mx-auto mt-16 md:mt-24 text-center">
+                <div class="fade-in-up">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white leading-tight">
+                        El futuro del <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Marketing Digital</span> está en su bolsillo 🚀
+                    </h1>
+                    <p class="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-300">
+                        Crea, distribuye y gestiona pases digitales para Apple Wallet y Google Wallet. Conecta con tus clientes de una forma directa, personal y moderna.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 shadow-lg">Empieza Gratis</a>
+                        <a href="#" class="w-full sm:w-auto glass-effect hover:bg-white/10 text-white font-medium py-3 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105">Ver Demo</a>
+                    </div>
+                </div>
+
+                <!-- ===== Animated Stats Section ===== -->
+                <div id="stats-section" class="mt-20 md:mt-28">
+                    <div class="text-center mb-10">
+                         <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Resultados que hablan por sí solos</h2>
+                         <p class="max-w-2xl mx-auto mt-4 text-lg text-gray-400">Nuestra estrategia se traduce en crecimiento real para tu negocio.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <!-- Stat 1 -->
+                        <div class="stat-card glass-effect p-6 rounded-2xl text-center">
+                            <p class="text-5xl font-bold text-emerald-400"><span class="stat-number" data-target="90">0</span>%</p>
+                            <p class="text-lg font-semibold text-white mt-2">Retención de Clientes</p>
+                            <p class="text-sm text-gray-400">Fidelidad que perdura.</p>
+                        </div>
+                        <!-- Stat 2 -->
+                        <div class="stat-card glass-effect p-6 rounded-2xl text-center">
+                            <p class="text-5xl font-bold text-blue-400">↑<span class="stat-number" data-target="50">0</span>%</p>
+                            <p class="text-lg font-semibold text-white mt-2">Aumento en Ventas</p>
+                            <p class="text-sm text-gray-400">Impacto directo en ingresos.</p>
+                        </div>
+                        <!-- Stat 3 -->
+                        <div class="stat-card glass-effect p-6 rounded-2xl text-center">
+                            <p class="text-5xl font-bold text-amber-400"><span class="stat-number" data-target="74">0</span>%</p>
+                            <p class="text-lg font-semibold text-white mt-2">Interacción Relevante</p>
+                            <p class="text-sm text-gray-400">Conexión con tu audiencia.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- ===== Problem/Solution Section ===== -->
+            <section class="w-full max-w-7xl mx-auto my-24 md:my-36">
+                 <div class="text-center mb-16 fade-in-up">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">¿Cansado de no llegar a tus clientes? 😩</h2>
+                     <p class="max-w-2xl mx-auto mt-4 text-lg text-gray-400">El marketing tradicional tiene barreras. Nosotros las derribamos.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="fade-in-up p-8 rounded-2xl border border-red-500/20 bg-red-900/10" style="transition-delay: 200ms;">
+                        <h3 class="text-2xl font-bold text-red-300 mb-6">Los Canales Tradicionales Fallan 📉</h3>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start"><div id="icon-x-circle" class="mr-3 mt-1 flex-shrink-0 text-red-400"></div><div><strong class="text-white">Emails ignorados:</strong> Tasas de apertura bajas en bandejas saturadas.</div></li>
+                            <li class="flex items-start"><div id="icon-x-circle-2" class="mr-3 mt-1 flex-shrink-0 text-red-400"></div><div><strong class="text-white">Costos de Ads elevados:</strong> La puja por la atención es cada vez más cara.</div></li>
+                             <li class="flex items-start"><div id="icon-x-circle-3" class="mr-3 mt-1 flex-shrink-0 text-red-400"></div><div><strong class="text-white">Lealtad frágil:</strong> Las apps de marca son las primeras en ser eliminadas.</div></li>
+                        </ul>
+                    </div>
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up border border-emerald-400/30" style="transition-delay: 400ms;">
+                        <h3 class="text-2xl font-bold text-emerald-300 mb-6">La Solución: Smart Passes ✨</h3>
+                         <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start"><div id="icon-check-circle" class="mr-3 mt-1 flex-shrink-0 text-emerald-400"></div><div><strong class="text-white">Comunicación directa:</strong> Notificaciones push en la pantalla de bloqueo.</div></li>
+                            <li class="flex items-start"><div id="icon-check-circle-2" class="mr-3 mt-1 flex-shrink-0 text-emerald-400"></div><div><strong class="text-white">Presencia constante:</strong> Tu marca vive en la billetera digital de tus clientes.</div></li>
+                             <li class="flex items-start"><div id="icon-check-circle-3" class="mr-3 mt-1 flex-shrink-0 text-emerald-400"></div><div><strong class="text-white">Fidelidad que perdura:</strong> Cupones, puntos y pases que aportan valor real.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Features Section ===== -->
+            <section class="w-full max-w-7xl mx-auto my-24 md:my-36">
+                <div class="text-center mb-16">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight fade-in-up">Una plataforma, infinitas posibilidades ♾️</h2>
+                     <p class="max-w-xl mx-auto mt-4 text-lg text-gray-400 fade-in-up" style="transition-delay: 150ms;">Descubre por qué las marcas líderes nos eligen.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 200ms;"><div id="icon-wallet" class="inline-block bg-blue-500/20 text-blue-300 p-3 rounded-lg mb-4"></div><h3 class="text-xl font-bold text-white mb-2">Integración Nativa 📲</h3><p class="text-gray-300">Sin necesidad de que los usuarios descarguen apps adicionales.</p></div>
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 300ms;"><div id="icon-bell" class="inline-block bg-emerald-500/20 text-emerald-300 p-3 rounded-lg mb-4"></div><h3 class="text-xl font-bold text-white mb-2">Notificaciones Push 🔔</h3><p class="text-gray-300">Envía recordatorios relevantes a la pantalla de bloqueo.</p></div>
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 400ms;"><div id="icon-chart" class="inline-block bg-amber-500/20 text-amber-300 p-3 rounded-lg mb-4"></div><h3 class="text-xl font-bold text-white mb-2">Análisis Detallado 📊</h3><p class="text-gray-300">Mide el rendimiento de tus campañas con métricas clave.</p></div>
+                </div>
+            </section>
+
+            <!-- ===== Interactive Flip Card Section ===== -->
+            <section class="w-full max-w-7xl mx-auto my-24 md:my-36">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in-up text-center lg:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Mucho más que una cara bonita</h2>
+                        <p class="max-w-xl mx-auto lg:mx-0 mt-4 text-lg text-gray-400">El reverso de cada pase es un nuevo canal de comunicación. Añade información útil y enlaces directos para que tus clientes interactúen con tu negocio con un solo toque.</p>
+                        <!-- Instrucción de giro mejorada -->
+                        <div class="mt-8 inline-flex items-center gap-x-2 bg-gray-800/50 text-gray-300 font-semibold py-2 px-4 rounded-full shadow-lg">
+                            <span>Toca para girar</span>
+                            <div id="red-arrow" class="text-red-500 animate-bounce-horizontal"></div>
+                        </div>
+                    </div>
+                    <div id="flip-card-interactive" class="w-full max-w-[220px] mx-auto h-[430px] flip-card-container fade-in-up cursor-pointer" style="transition-delay: 200ms;">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/TarjetaGirataria.png" alt="Cara frontal de un pase de membresía" class="w-full h-full object-cover" width="816" height="1600">
+                            </div>
+                            <div class="flip-card-back">
+                                 <img src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/atras+(2).png" alt="Cara trasera de un pase de membresía con enlaces" class="w-full h-full object-cover" width="816" height="1600">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Gallery Section ===== -->
+            <section class="w-full mx-auto my-24 md:my-36">
+                 <div class="text-center mb-16 fade-in-up">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Crea experiencias únicas para cada cliente ✨</h2>
+                     <p class="max-w-2xl mx-auto mt-4 text-lg text-gray-400">Desde cupones de descuento hasta boletos para eventos, todo es posible.</p>
+                </div>
+                <div id="gallery-container" class="gallery-container fade-in-up" style="transition-delay: 200ms;">
+                    <div class="gallery-wrapper">
+                        <div class="gallery-card glass-effect rounded-2xl p-4 border-l-4 border-blue-500"><img loading="lazy" src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/1.png" alt="Ejemplo de cupón de descuento" class="rounded-lg mb-4 w-full" width="816" height="1600"><h3 class="text-lg font-bold text-white">Cupones de Descuento 🎟️</h3><p class="text-sm text-gray-300 mt-1">Atrae clientes y aumenta las ventas.</p></div>
+                        <div class="gallery-card glass-effect rounded-2xl p-4 border-l-4 border-emerald-500"><img loading="lazy" src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/Untitled+design+(36).png" alt="Ejemplo de tarjeta de lealtad" class="rounded-lg mb-4 w-full" width="816" height="1600"><h3 class="text-lg font-bold text-white">Tarjetas de Lealtad ⭐</h3><p class="text-sm text-gray-300 mt-1">Fideliza a tus clientes con puntos y sellos.</p></div>
+                        <div class="gallery-card glass-effect rounded-2xl p-4 border-l-4 border-teal-500"><img loading="lazy" src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/4.png" alt="Ejemplo de tarjeta de estampillas digitales" class="rounded-lg mb-4 w-full" width="816" height="1600"><h3 class="text-lg font-bold text-white">Estampillas Digitales 💮</h3><p class="text-sm text-gray-300 mt-1">Incentiva compras recurrentes con un sistema de sellos.</p></div>
+                        <div class="gallery-card glass-effect rounded-2xl p-4 border-l-4 border-amber-500"><img loading="lazy" src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/5.png" alt="Ejemplo de boleto para evento" class="rounded-lg mb-4 w-full" width="816" height="1600"><h3 class="text-lg font-bold text-white">Boletos para Eventos 🎫</h3><p class="text-sm text-gray-300 mt-1">Simplifica el acceso a tus eventos.</p></div>
+                        <div class="gallery-card glass-effect rounded-2xl p-4 border-l-4 border-rose-500"><img loading="lazy" src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/3.png" alt="Ejemplo de tarjeta de regalo" class="rounded-lg mb-4 w-full" width="816" height="1600"><h3 class="text-lg font-bold text-white">Tarjetas de Regalo 🎁</h3><p class="text-sm text-gray-300 mt-1">Ofrece el regalo perfecto y expande tu clientela.</p></div>
+                        <div class="gallery-card glass-effect rounded-2xl p-4 border-l-4 border-violet-500"><img loading="lazy" src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/2.png" alt="Ejemplo real de un pase de membresía para Wallet" class="rounded-lg mb-4 w-full" width="816" height="1600"><h3 class="text-lg font-bold text-white">Pases de Membresía 💳</h3><p class="text-sm text-gray-300 mt-1">Gestiona accesos VIP y beneficios exclusivos.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Pricing Section ===== -->
+            <section class="w-full max-w-7xl mx-auto my-24 md:my-36">
+                <div class="text-center mb-16 fade-in-up">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Un plan simple y potente para crecer 🚀</h2>
+                     <p class="max-w-2xl mx-auto mt-4 text-lg text-gray-400">Todo lo que necesitas, sin complicaciones.</p>
+                </div>
+                <div class="flex justify-center fade-in-up" style="transition-delay: 200ms;">
+                    <div class="glass-effect rounded-2xl p-8 w-full max-w-md border-2 border-emerald-500 shadow-2xl relative">
+                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                            <span class="bg-emerald-500 text-white text-sm font-semibold px-4 py-1 rounded-full">Plan Profesional</span>
+                        </div>
+                        <div class="text-center my-8">
+                            <span class="text-5xl font-extrabold text-white">$99</span>
+                            <span class="text-lg text-gray-400"> USD / mes</span>
+                        </div>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-center"><div id="price-check-1" class="mr-3 text-emerald-400"></div><span>🎫 Hasta <strong class="text-white">5 campañas</strong> de pases digitales</span></li>
+                            <li class="flex items-center"><div id="price-check-2" class="mr-3 text-emerald-400"></div><span>🏢 Gestiona hasta <strong class="text-white">5 negocios</strong> diferentes</span></li>
+                            <li class="flex items-center"><div id="price-check-3" class="mr-3 text-emerald-400"></div><span>♾️ Notificaciones Push <strong class="text-white">Ilimitadas</strong></span></li>
+                            <li class="flex items-center"><div id="price-check-4" class="mr-3 text-emerald-400"></div><span>🎨 Editor <strong class="text-white">visual</strong> para personalizar pases</span></li>
+                            <li class="flex items-center"><div id="price-check-5" class="mr-3 text-emerald-400"></div><span>📈 Acceso a <strong class="text-white">estadísticas</strong> de rendimiento</span></li>
+                            <li class="flex items-center"><div id="price-check-6" class="mr-3 text-emerald-400"></div><span>💬 <strong class="text-white">Soporte prioritario</strong> por email y chat</span></li>
+                        </ul>
+                        <div class="mt-10">
+                            <a href="https://wa.me/529994380869?text=quiero%20contratar%20el%20servicio" target="_blank" class="w-full block text-center bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 shadow-lg">
+                                Comenzar Ahora
+                            </a>
+                        </div>
+                        <p class="text-center text-xs text-gray-500 mt-4">Sin contratos a largo plazo. Cancela cuando quieras.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Footer ===== -->
+            <footer class="w-full max-w-7xl mx-auto text-center py-10 border-t border-white/10">
+                <p class="text-gray-400">&copy; 2025 Smart Passes. Todos los derechos reservados.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts movidos al final para optimizar la carga -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" defer></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" defer></script>
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Se espera a que Lucide esté disponible
+            const onLucideLoad = () => {
+                const createIcon = (elementId, iconName, size = 28) => {
+                    if (typeof lucide === 'undefined') return;
+                    const iconElement = document.getElementById(elementId);
+                    if (iconElement) {
+                        const icon = React.createElement(lucide[iconName], { size: size, className: 'text-current' });
+                        ReactDOM.render(icon, iconElement);
+                    }
+                };
+
+                createIcon('menu-icon', 'Menu');
+                createIcon('icon-wallet', 'Wallet');
+                createIcon('icon-bell', 'BellRing');
+                createIcon('icon-chart', 'BarChart3');
+                createIcon('icon-x-circle', 'XCircle', 20);
+                createIcon('icon-x-circle-2', 'XCircle', 20);
+                createIcon('icon-x-circle-3', 'XCircle', 20);
+                createIcon('icon-check-circle', 'CheckCircle2', 20);
+                createIcon('icon-check-circle-2', 'CheckCircle2', 20);
+                createIcon('icon-check-circle-3', 'CheckCircle2', 20);
+                createIcon('red-arrow', 'ArrowRight', 24);
+                createIcon('price-check-1', 'CheckCircle2', 20);
+                createIcon('price-check-2', 'CheckCircle2', 20);
+                createIcon('price-check-3', 'CheckCircle2', 20);
+                createIcon('price-check-4', 'CheckCircle2', 20);
+                createIcon('price-check-5', 'CheckCircle2', 20);
+                createIcon('price-check-6', 'CheckCircle2', 20);
+            };
+
+            // Reintentar cargar iconos si lucide no está listo
+            let lucideCheck = setInterval(() => {
+                if (typeof lucide !== 'undefined') {
+                    clearInterval(lucideCheck);
+                    onLucideLoad();
+                }
+            }, 100);
+
+            // SCRIPT PARA LA GALERÍA INTERACTIVA
+            const galleryContainer = document.getElementById('gallery-container');
+            if (galleryContainer) {
+                const galleryWrapper = galleryContainer.querySelector('.gallery-wrapper');
+                const cards = galleryWrapper.querySelectorAll('.gallery-card');
+
+                function updateGalleryTransforms() {
+                    const containerRect = galleryContainer.getBoundingClientRect();
+                    const containerCenter = containerRect.left + containerRect.width / 2;
+
+                    cards.forEach(card => {
+                        const cardRect = card.getBoundingClientRect();
+                        const cardCenter = cardRect.left + cardRect.width / 2;
+                        const distance = containerCenter - cardCenter;
+                        const rotation = distance * 0.05; 
+                        const scale = 1 - Math.abs(distance) * 0.0005;
+                        card.style.transform = `rotateY(${rotation}deg) scale(${scale})`;
+                    });
+                }
+
+                updateGalleryTransforms();
+                galleryContainer.addEventListener('scroll', updateGalleryTransforms);
+            }
+
+            // SCRIPT PARA TARJETA 3D INTERACTIVA (CON SOPORTE MÓVIL)
+            const flipCard = document.getElementById('flip-card-interactive');
+            if(flipCard) {
+                flipCard.addEventListener('click', () => {
+                    flipCard.querySelector('.flip-card').classList.toggle('is-flipped');
+                });
+            }
+
+            // --- SCRIPT PARA EFECTO DE POLVO DIGITAL ---
+            const canvas = document.getElementById('digital-dust-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let mouse = { x: null, y: null, radius: 100 };
+
+            function setupCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            setupCanvas();
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.x;
+                mouse.y = e.y;
+            });
+            window.addEventListener('mouseout', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            class Particle {
+                constructor(x, y, directionX, directionY, size, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.directionX = directionX;
+                    this.directionY = directionY;
+                    this.size = size;
+                    this.color = color;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+                update() {
+                    if (this.x > canvas.width || this.x < 0) {
+                        this.directionX = -this.directionX;
+                    }
+                    if (this.y > canvas.height || this.y < 0) {
+                        this.directionY = -this.directionY;
+                    }
+
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    if (distance < mouse.radius + this.size) {
+                        if (mouse.x < this.x && this.x < canvas.width - this.size * 10) { this.x += 1; }
+                        if (mouse.x > this.x && this.x > this.size * 10) { this.x -= 1; }
+                        if (mouse.y < this.y && this.y < canvas.height - this.size * 10) { this.y += 1; }
+                        if (mouse.y > this.y && this.y > this.size * 10) { this.y -= 1; }
+                    }
+
+                    this.x += this.directionX;
+                    this.y += this.directionY;
+                    this.draw();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                let numberOfParticles = (canvas.height * canvas.width) / 9000;
+                for (let i = 0; i < numberOfParticles; i++) {
+                    let size = (Math.random() * 1.5) + 0.5;
+                    let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                    let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                    let directionX = (Math.random() * .4) - .2;
+                    let directionY = (Math.random() * .4) - .2;
+                    let color = 'rgba(255, 255, 255, 0.5)';
+                    particles.push(new Particle(x, y, directionX, directionY, size, color));
+                }
+            }
+
+            function animateParticles() {
+                requestAnimationFrame(animateParticles);
+                ctx.clearRect(0,0,innerWidth, innerHeight);
+
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                }
+            }
+
+            initParticles();
+            animateParticles();
+
+            window.addEventListener('resize', () => {
+                setupCanvas();
+                initParticles();
+            });
+
+
+            // --- SCRIPT PARA EFECTO PARALLAX 3D GLOBAL ---
+            const pageContent = document.getElementById('page-content');
+            window.addEventListener('mousemove', (e) => {
+                if (window.innerWidth < 1024) {
+                    if (pageContent) pageContent.style.transform = ''; // Reset on mobile
+                    return;
+                }
+
+                const { clientX, clientY } = e;
+                const x = (clientX / window.innerWidth - 0.5) * 2; // Rango de -1 a 1
+                const y = (clientY / window.innerHeight - 0.5) * 2; // Rango de -1 a 1
+
+                // Efecto para las formas del fondo
+                const shape1 = document.querySelector('.shape1');
+                const shape2 = document.querySelector('.shape2');
+                const shape3 = document.querySelector('.shape3');
+                if (shape1) shape1.style.transform = `translateX(${x * 25}px) translateY(${y * 18}px)`;
+                if (shape2) shape2.style.transform = `translateX(${x * -20}px) translateY(${y * -14}px)`;
+                if (shape3) shape3.style.transform = `translate(-50%, -50%) translateX(${x * 10}px) translateY(${y * -10}px)`;
+
+                // Efecto 3D para el contenido principal de la página
+                if (pageContent) {
+                    const rotateX = -y * 2.5; // Ajusta la sensibilidad
+                    const rotateY = x * 2.5;  // Ajusta la sensibilidad
+                    pageContent.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+                }
+            });
+
+            // --- SCRIPT PARA ANIMACIÓN DE ESTADÍSTICAS (CORREGIDO) ---
+            const statsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statCard = entry.target;
+                        statCard.classList.add('is-visible');
+                        const numberEl = statCard.querySelector('.stat-number');
+                        const target = +numberEl.dataset.target;
+
+                        let current = 0;
+                        const duration = 2000;
+                        const intervalTime = 20;
+                        const increment = target / (duration / intervalTime);
+
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                clearInterval(timer);
+                                numberEl.textContent = target;
+                            } else {
+                                numberEl.textContent = Math.floor(current);
+                            }
+                        }, intervalTime);
+
+                        observer.unobserve(statCard); // Animar solo una vez
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.stat-card').forEach(card => {
+                statsObserver.observe(card);
+            });
+
+            // Script para animaciones de aparición al hacer scroll
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach(element => {
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
 </body>
-
 </html>
