@@ -112,10 +112,18 @@
                     <span class="text-white">Smart</span><span class="text-emerald-400">Passes</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300">Inicio</a>
-                    <a href="#authentication" class="text-gray-300 hover:text-white transition-colors duration-300">Autenticación</a>
-                    <a href="#customers" class="text-gray-300 hover:text-white transition-colors duration-300">Clientes</a>
-                    <a href="#offers" class="text-gray-300 hover:text-white transition-colors duration-300">Ofertas</a>
+                    <a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.home">Home</a>
+                    <a href="#authentication" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.auth">Authentication</a>
+                    <a href="#customers" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.customers">Customers</a>
+                    <a href="#offers" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.offers">Offers</a>
+                    
+                    <!-- Language Toggle -->
+                    <div class="relative">
+                        <button id="lang-toggle" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-2">
+                            <span id="current-lang">EN</span>
+                            <div id="globe-icon" class="w-4 h-4"></div>
+                        </button>
+                    </div>
                 </div>
                 <button class="hidden md:inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-lg transition-transform duration-300 hover:scale-105">
                     <a href="index.html" class="text-white no-underline">Volver</a>
@@ -130,13 +138,13 @@
         <section class="w-full max-w-7xl mx-auto mt-16 md:mt-24 text-center mb-20">
             <div class="fade-in-up">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white leading-tight">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">API de Lealtad</span> Smart Passes
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400" data-i18n="hero.api">Loyalty API</span> Smart Passes
                 </h1>
-                <p class="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-300">
-                    Documentación oficial v1.0. Gestiona mediante programación todos los aspectos de tus programas de lealtad para billeteras móviles.
+                <p class="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-300" data-i18n="hero.subtitle">
+                    Official documentation v1.0. Programmatically manage all aspects of your loyalty programs for mobile wallets.
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#getting-started" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 shadow-lg">Comenzar</a>
+                    <a href="#getting-started" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 shadow-lg" data-i18n="hero.cta">Get Started</a>
                 </div>
             </div>
         </section>
@@ -147,29 +155,29 @@
             <!-- ===== Sidebar Navigation ===== -->
             <aside class="lg:col-span-1">
                 <div class="sidebar-nav glass-effect rounded-2xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-4">Contenido</h3>
+                    <h3 class="text-lg font-semibold text-white mb-4" data-i18n="sidebar.title">Contents</h3>
                     <nav class="space-y-2">
-                        <a href="#getting-started" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1">Primeros Pasos</a>
-                        <a href="#base-url" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1">URL Base</a>
-                        <a href="#authentication" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1">Autenticación</a>
-                        <a href="#format-codes" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1">Formato y Códigos</a>
-                        <a href="#customers" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1">Clientes</a>
+                        <a href="#getting-started" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.getting-started">Getting Started</a>
+                        <a href="#base-url" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.base-url">Base URL</a>
+                        <a href="#authentication" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.authentication">Authentication</a>
+                        <a href="#format-codes" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.format-codes">Format & Codes</a>
+                        <a href="#customers" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.customers">Customers</a>
                         <div class="pl-4 space-y-1">
-                            <a href="#list-customers" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Listar Clientes</a>
-                            <a href="#get-customer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Obtener Cliente</a>
-                            <a href="#create-customer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Crear Cliente</a>
-                            <a href="#update-customer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Actualizar Cliente</a>
-                            <a href="#delete-customer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Eliminar Cliente</a>
-                            <a href="#add-points" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Añadir Puntos</a>
+                            <a href="#list-customers" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.list-customers">List Customers</a>
+                            <a href="#get-customer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.get-customer">Get Customer</a>
+                            <a href="#create-customer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.create-customer">Create Customer</a>
+                            <a href="#update-customer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.update-customer">Update Customer</a>
+                            <a href="#delete-customer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.delete-customer">Delete Customer</a>
+                            <a href="#add-points" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.add-points">Add Points</a>
                         </div>
-                        <a href="#offers" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1">Ofertas</a>
+                        <a href="#offers" class="block text-gray-300 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.offers">Offers</a>
                         <div class="pl-4 space-y-1">
-                            <a href="#list-offers" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Listar Ofertas</a>
-                            <a href="#create-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Crear Oferta</a>
-                            <a href="#update-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Actualizar Oferta</a>
-                            <a href="#delete-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Eliminar Oferta</a>
-                            <a href="#publish-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Publicar Oferta</a>
-                            <a href="#cancel-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1">Cancelar Oferta</a>
+                            <a href="#list-offers" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.list-offers">List Offers</a>
+                            <a href="#create-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.create-offer">Create Offer</a>
+                            <a href="#update-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.update-offer">Update Offer</a>
+                            <a href="#delete-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.delete-offer">Delete Offer</a>
+                            <a href="#publish-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.publish-offer">Publish Offer</a>
+                            <a href="#cancel-offer" class="block text-sm text-gray-400 hover:text-emerald-400 transition-colors duration-300 py-1" data-i18n="sidebar.cancel-offer">Cancel Offer</a>
                         </div>
                     </nav>
                 </div>
@@ -181,9 +189,9 @@
                 <!-- Getting Started -->
                 <section id="getting-started" class="section-target fade-in-up">
                     <div class="glass-effect rounded-2xl p-8">
-                        <h2 class="text-3xl font-bold text-white mb-4">🚀 Primeros Pasos</h2>
-                        <p class="text-gray-300 mb-6">
-                            Bienvenido a la documentación oficial de la API de Lealtad de Smart Passes. Esta API te permite gestionar mediante programación todos los aspectos de tus programas de lealtad para billeteras móviles.
+                        <h2 class="text-3xl font-bold text-white mb-4" data-i18n="getting-started.title">🚀 Getting Started</h2>
+                        <p class="text-gray-300 mb-6" data-i18n="getting-started.description">
+                            Welcome to the official Smart Passes Loyalty API documentation. This API allows you to programmatically manage all aspects of your loyalty programs for mobile wallets.
                         </p>
                     </div>
                 </section>
@@ -191,8 +199,8 @@
                 <!-- Base URL -->
                 <section id="base-url" class="section-target fade-in-up">
                     <div class="glass-effect rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold text-white mb-4">🌐 URL Base</h2>
-                        <p class="text-gray-300 mb-4">Todas las URLs a las que se hace referencia en esta documentación tienen la siguiente URL base:</p>
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="base-url.title">🌐 Base URL</h2>
+                        <p class="text-gray-300 mb-4" data-i18n="base-url.description">All URLs referenced in this documentation have the following base URL:</p>
                         <div class="code-block">
                             <code>https://pass.smartpasses.io/api/v1/loyalty/</code>
                         </div>
@@ -202,11 +210,11 @@
                 <!-- Authentication -->
                 <section id="authentication" class="section-target fade-in-up">
                     <div class="glass-effect rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold text-white mb-4">🔐 Autenticación</h2>
-                        <p class="text-gray-300 mb-4">
-                            Todas las peticiones a la API deben ser autorizadas con una App Key válida. La clave debe ser enviada en la cabecera Authorization de cada petición.
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="auth.title">🔐 Authentication</h2>
+                        <p class="text-gray-300 mb-4" data-i18n="auth.description">
+                            All API requests must be authorized with a valid App Key. The key must be sent in the Authorization header of each request.
                         </p>
-                        <h3 class="text-lg font-semibold text-emerald-400 mb-3">Ejemplo de Cabecera:</h3>
+                        <h3 class="text-lg font-semibold text-emerald-400 mb-3" data-i18n="auth.example">Example Header:</h3>
                         <div class="code-block">
                             <code>Authorization: TU_APP_KEY_AQUI</code>
                         </div>
@@ -216,26 +224,26 @@
                 <!-- Format and Status Codes -->
                 <section id="format-codes" class="section-target fade-in-up">
                     <div class="glass-effect rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold text-white mb-4">📋 Formato y Códigos de Estado</h2>
-                        <p class="text-gray-300 mb-4">
-                            La API utiliza JSON para todas las peticiones y respuestas. Se aplican los métodos HTTP estándar (GET, POST, PUT, DELETE).
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="format.title">📋 Format and Status Codes</h2>
+                        <p class="text-gray-300 mb-4" data-i18n="format.description">
+                            The API uses JSON for all requests and responses. Standard HTTP methods (GET, POST, PUT, DELETE) are applied.
                         </p>
                         <div class="grid md:grid-cols-2 gap-4">
                             <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
-                                <h4 class="font-semibold text-green-400 mb-2">✅ Respuestas Exitosas</h4>
-                                <p class="text-sm text-gray-300">Código 200 OK</p>
+                                <h4 class="font-semibold text-green-400 mb-2" data-i18n="format.success">✅ Successful Responses</h4>
+                                <p class="text-sm text-gray-300" data-i18n="format.success.desc">200 OK Code</p>
                             </div>
                             <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
-                                <h4 class="font-semibold text-red-400 mb-2">❌ Errores del Cliente</h4>
-                                <p class="text-sm text-gray-300">Códigos 400 Bad Request o 422 Unprocessable Entity</p>
+                                <h4 class="font-semibold text-red-400 mb-2" data-i18n="format.client-error">❌ Client Errors</h4>
+                                <p class="text-sm text-gray-300" data-i18n="format.client-error.desc">400 Bad Request or 422 Unprocessable Entity codes</p>
                             </div>
                             <div class="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
-                                <h4 class="font-semibold text-orange-400 mb-2">🔒 Errores de Autenticación</h4>
-                                <p class="text-sm text-gray-300">Código 403 Forbidden</p>
+                                <h4 class="font-semibold text-orange-400 mb-2" data-i18n="format.auth-error">🔒 Authentication Errors</h4>
+                                <p class="text-sm text-gray-300" data-i18n="format.auth-error.desc">403 Forbidden Code</p>
                             </div>
                             <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
-                                <h4 class="font-semibold text-purple-400 mb-2">🔍 Recursos No Encontrados</h4>
-                                <p class="text-sm text-gray-300">Código 404 Not Found</p>
+                                <h4 class="font-semibold text-purple-400 mb-2" data-i18n="format.not-found">🔍 Resource Not Found</h4>
+                                <p class="text-sm text-gray-300" data-i18n="format.not-found.desc">404 Not Found Code</p>
                             </div>
                         </div>
                     </div>
@@ -244,7 +252,7 @@
                 <!-- Customers Section -->
                 <section id="customers" class="section-target fade-in-up">
                     <div class="glass-effect rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold text-white mb-6">👥 Clientes (Customers)</h2>
+                        <h2 class="text-2xl font-bold text-white mb-6" data-i18n="customers.title">👥 Customers</h2>
 
                         <!-- List Customers -->
                         <div id="list-customers" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
@@ -395,7 +403,7 @@
                 <!-- Offers Section -->
                 <section id="offers" class="section-target fade-in-up">
                     <div class="glass-effect rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold text-white mb-6">🎁 Ofertas (Offers)</h2>
+                        <h2 class="text-2xl font-bold text-white mb-6" data-i18n="offers.title">🎁 Offers</h2>
 
                         <!-- List Offers -->
                         <div id="list-offers" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
@@ -497,7 +505,7 @@
 
         <!-- ===== Footer ===== -->
         <footer class="w-full max-w-7xl mx-auto text-center py-10 border-t border-white/10">
-            <p class="text-gray-400">&copy; 2025 Smart Passes. Todos los derechos reservados.</p>
+            <p class="text-gray-400" data-i18n="footer.rights">&copy; 2025 Smart Passes. All rights reserved.</p>
         </footer>
     </div>
 
@@ -517,6 +525,7 @@
                 };
 
                 createIcon('menu-icon', 'Menu');
+                createIcon('globe-icon', 'Globe');
             };
 
             // Reintentar cargar iconos si lucide no está listo
@@ -539,6 +548,199 @@
             document.querySelectorAll('.fade-in-up').forEach(element => {
                 fadeInObserver.observe(element);
             });
+
+            // --- INTERNATIONALIZATION SYSTEM ---
+            const translations = {
+                en: {
+                    'nav.home': 'Home',
+                    'nav.auth': 'Authentication',
+                    'nav.customers': 'Customers',
+                    'nav.offers': 'Offers',
+                    'hero.api': 'Loyalty API',
+                    'hero.subtitle': 'Official documentation v1.0. Programmatically manage all aspects of your loyalty programs for mobile wallets.',
+                    'hero.cta': 'Get Started',
+                    'sidebar.title': 'Contents',
+                    'sidebar.getting-started': 'Getting Started',
+                    'sidebar.base-url': 'Base URL',
+                    'sidebar.authentication': 'Authentication',
+                    'sidebar.format-codes': 'Format & Codes',
+                    'sidebar.customers': 'Customers',
+                    'sidebar.list-customers': 'List Customers',
+                    'sidebar.get-customer': 'Get Customer',
+                    'sidebar.create-customer': 'Create Customer',
+                    'sidebar.update-customer': 'Update Customer',
+                    'sidebar.delete-customer': 'Delete Customer',
+                    'sidebar.add-points': 'Add Points',
+                    'sidebar.offers': 'Offers',
+                    'sidebar.list-offers': 'List Offers',
+                    'sidebar.create-offer': 'Create Offer',
+                    'sidebar.update-offer': 'Update Offer',
+                    'sidebar.delete-offer': 'Delete Offer',
+                    'sidebar.publish-offer': 'Publish Offer',
+                    'sidebar.cancel-offer': 'Cancel Offer',
+                    'getting-started.title': '🚀 Getting Started',
+                    'getting-started.description': 'Welcome to the official Smart Passes Loyalty API documentation. This API allows you to programmatically manage all aspects of your loyalty programs for mobile wallets.',
+                    'base-url.title': '🌐 Base URL',
+                    'base-url.description': 'All URLs referenced in this documentation have the following base URL:',
+                    'auth.title': '🔐 Authentication',
+                    'auth.description': 'All API requests must be authorized with a valid App Key. The key must be sent in the Authorization header of each request.',
+                    'auth.example': 'Example Header:',
+                    'format.title': '📋 Format and Status Codes',
+                    'format.description': 'The API uses JSON for all requests and responses. Standard HTTP methods (GET, POST, PUT, DELETE) are applied.',
+                    'format.success': '✅ Successful Responses',
+                    'format.success.desc': '200 OK Code',
+                    'format.client-error': '❌ Client Errors',
+                    'format.client-error.desc': '400 Bad Request or 422 Unprocessable Entity codes',
+                    'format.auth-error': '🔒 Authentication Errors',
+                    'format.auth-error.desc': '403 Forbidden Code',
+                    'format.not-found': '🔍 Resource Not Found',
+                    'format.not-found.desc': '404 Not Found Code',
+                    'customers.title': '👥 Customers',
+                    'customers.list.title': 'List Customers',
+                    'customers.list.description': 'Returns a list of all customers from a specific loyalty program.',
+                    'customers.get.title': 'Get a Customer',
+                    'customers.get.description': 'Returns the details of a specific customer.',
+                    'customers.create.title': 'Create a Customer',
+                    'customers.create.description': 'Creates a new customer in a loyalty program.',
+                    'customers.update.title': 'Update a Customer',
+                    'customers.update.description': 'Updates an existing customer\'s data.',
+                    'customers.delete.title': 'Delete a Customer',
+                    'customers.delete.description': 'Permanently deletes a customer.',
+                    'customers.add-points.title': 'Add Points to a Customer',
+                    'customers.add-points.description': 'Adds a specific amount of points to a customer.',
+                    'offers.title': '🎁 Offers',
+                    'offers.list.title': 'List Offers',
+                    'offers.list.description': 'Returns a list of all offers (rewards) from a program.',
+                    'offers.create.title': 'Create an Offer',
+                    'offers.create.description': 'Creates a new offer or reward.',
+                    'offers.update.title': 'Update an Offer',
+                    'offers.update.description': 'Updates an existing offer.',
+                    'offers.delete.title': 'Delete an Offer',
+                    'offers.delete.description': 'Deletes an offer. <strong class="text-amber-400">Note:</strong> Only offers in "Draft" status can be deleted.',
+                    'offers.publish.title': 'Publish an Offer',
+                    'offers.publish.description': 'Changes an offer status from "Draft" to "Published".',
+                    'offers.cancel.title': 'Cancel an Offer',
+                    'offers.cancel.description': 'Changes a "Published" offer status to deactivate it.',
+                    'endpoint.label': 'Endpoint:',
+                    'request.example': 'Example Request:',
+                    'response.example': 'Example Response:',
+                    'request.body': 'Request Body (JSON):',
+                    'footer.rights': '&copy; 2025 Smart Passes. All rights reserved.'
+                },
+                es: {
+                    'nav.home': 'Inicio',
+                    'nav.auth': 'Autenticación',
+                    'nav.customers': 'Clientes',
+                    'nav.offers': 'Ofertas',
+                    'hero.api': 'API de Lealtad',
+                    'hero.subtitle': 'Documentación oficial v1.0. Gestiona mediante programación todos los aspectos de tus programas de lealtad para billeteras móviles.',
+                    'hero.cta': 'Comenzar',
+                    'sidebar.title': 'Contenido',
+                    'sidebar.getting-started': 'Primeros Pasos',
+                    'sidebar.base-url': 'URL Base',
+                    'sidebar.authentication': 'Autenticación',
+                    'sidebar.format-codes': 'Formato y Códigos',
+                    'sidebar.customers': 'Clientes',
+                    'sidebar.list-customers': 'Listar Clientes',
+                    'sidebar.get-customer': 'Obtener Cliente',
+                    'sidebar.create-customer': 'Crear Cliente',
+                    'sidebar.update-customer': 'Actualizar Cliente',
+                    'sidebar.delete-customer': 'Eliminar Cliente',
+                    'sidebar.add-points': 'Añadir Puntos',
+                    'sidebar.offers': 'Ofertas',
+                    'sidebar.list-offers': 'Listar Ofertas',
+                    'sidebar.create-offer': 'Crear Oferta',
+                    'sidebar.update-offer': 'Actualizar Oferta',
+                    'sidebar.delete-offer': 'Eliminar Oferta',
+                    'sidebar.publish-offer': 'Publicar Oferta',
+                    'sidebar.cancel-offer': 'Cancelar Oferta',
+                    'getting-started.title': '🚀 Primeros Pasos',
+                    'getting-started.description': 'Bienvenido a la documentación oficial de la API de Lealtad de Smart Passes. Esta API te permite gestionar mediante programación todos los aspectos de tus programas de lealtad para billeteras móviles.',
+                    'base-url.title': '🌐 URL Base',
+                    'base-url.description': 'Todas las URLs a las que se hace referencia en esta documentación tienen la siguiente URL base:',
+                    'auth.title': '🔐 Autenticación',
+                    'auth.description': 'Todas las peticiones a la API deben ser autorizadas con una App Key válida. La clave debe ser enviada en la cabecera Authorization de cada petición.',
+                    'auth.example': 'Ejemplo de Cabecera:',
+                    'format.title': '📋 Formato y Códigos de Estado',
+                    'format.description': 'La API utiliza JSON para todas las peticiones y respuestas. Se aplican los métodos HTTP estándar (GET, POST, PUT, DELETE).',
+                    'format.success': '✅ Respuestas Exitosas',
+                    'format.success.desc': 'Código 200 OK',
+                    'format.client-error': '❌ Errores del Cliente',
+                    'format.client-error.desc': 'Códigos 400 Bad Request o 422 Unprocessable Entity',
+                    'format.auth-error': '🔒 Errores de Autenticación',
+                    'format.auth-error.desc': 'Código 403 Forbidden',
+                    'format.not-found': '🔍 Recursos No Encontrados',
+                    'format.not-found.desc': 'Código 404 Not Found',
+                    'customers.title': '👥 Clientes (Customers)',
+                    'customers.list.title': 'Listar Clientes',
+                    'customers.list.description': 'Devuelve una lista de todos los clientes de un programa de lealtad específico.',
+                    'customers.get.title': 'Obtener un Cliente',
+                    'customers.get.description': 'Devuelve los detalles de un cliente específico.',
+                    'customers.create.title': 'Crear un Cliente',
+                    'customers.create.description': 'Crea un nuevo cliente en un programa de lealtad.',
+                    'customers.update.title': 'Actualizar un Cliente',
+                    'customers.update.description': 'Actualiza los datos de un cliente existente.',
+                    'customers.delete.title': 'Borrar un Cliente',
+                    'customers.delete.description': 'Elimina permanentemente a un cliente.',
+                    'customers.add-points.title': 'Añadir Puntos a un Cliente',
+                    'customers.add-points.description': 'Añade una cantidad específica de puntos a un cliente.',
+                    'offers.title': '🎁 Ofertas (Offers)',
+                    'offers.list.title': 'Listar Ofertas',
+                    'offers.list.description': 'Devuelve una lista de todas las ofertas (recompensas) de un programa.',
+                    'offers.create.title': 'Crear una Oferta',
+                    'offers.create.description': 'Crea una nueva oferta o recompensa.',
+                    'offers.update.title': 'Actualizar una Oferta',
+                    'offers.update.description': 'Actualiza una oferta existente.',
+                    'offers.delete.title': 'Borrar una Oferta',
+                    'offers.delete.description': 'Elimina una oferta. <strong class="text-amber-400">Nota:</strong> Solo se pueden eliminar las ofertas en estado "Borrador" (Draft).',
+                    'offers.publish.title': 'Publicar una Oferta',
+                    'offers.publish.description': 'Cambia el estado de una oferta de "Borrador" a "Publicada".',
+                    'offers.cancel.title': 'Cancelar una Oferta',
+                    'offers.cancel.description': 'Cambia el estado de una oferta "Publicada" para desactivarla.',
+                    'endpoint.label': 'Endpoint:',
+                    'request.example': 'Ejemplo de Petición:',
+                    'response.example': 'Ejemplo de Respuesta:',
+                    'request.body': 'Cuerpo de la Petición (JSON):',
+                    'footer.rights': '&copy; 2025 Smart Passes. Todos los derechos reservados.'
+                }
+            };
+
+            let currentLang = 'en'; // Default to English
+
+            function updateLanguage(lang) {
+                currentLang = lang;
+                
+                // Update language toggle button
+                const currentLangEl = document.getElementById('current-lang');
+                if (lang === 'en') {
+                    if (currentLangEl) currentLangEl.textContent = 'EN';
+                } else {
+                    if (currentLangEl) currentLangEl.textContent = 'ES';
+                }
+
+                // Update all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+
+                // Update document language attribute
+                document.documentElement.lang = lang;
+            }
+
+            // Language toggle functionality
+            const langToggle = document.getElementById('lang-toggle');
+            if (langToggle) {
+                langToggle.addEventListener('click', () => {
+                    const newLang = currentLang === 'en' ? 'es' : 'en';
+                    updateLanguage(newLang);
+                });
+            }
+
+            // Initialize with English
+            updateLanguage('en');
         });
     </script>
 </body>
