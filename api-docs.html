@@ -258,21 +258,21 @@
                         <div id="list-customers" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-get px-3 py-1 rounded-full text-sm font-mono">GET</span>
-                                <h3 class="text-xl font-semibold text-white">Listar Clientes</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="customers.list.title">List Customers</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Devuelve una lista de todos los clientes de un programa de lealtad específico.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="customers.list.description">Returns a list of all customers from a specific loyalty program.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block mb-4">
                                 <code>GET /programs/{programId}/customers</code>
                             </div>
 
-                            <h4 class="text-emerald-400 font-semibold mb-2">Ejemplo de Petición:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="request.example">Example Request:</h4>
                             <div class="code-block mb-4">
                                 <code>GET /programs/4886905521176576/customers</code>
                             </div>
 
-                            <h4 class="text-emerald-400 font-semibold mb-2">Ejemplo de Respuesta:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="response.example">Example Response:</h4>
                             <div class="code-block">
 <code>[
     {
@@ -301,16 +301,16 @@
                         <div id="get-customer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-get px-3 py-1 rounded-full text-sm font-mono">GET</span>
-                                <h3 class="text-xl font-semibold text-white">Obtener un Cliente</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="customers.get.title">Get a Customer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Devuelve los detalles de un cliente específico.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="customers.get.description">Returns the details of a specific customer.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block mb-4">
                                 <code>GET /programs/{programId}/customers/{customerId}</code>
                             </div>
 
-                            <h4 class="text-emerald-400 font-semibold mb-2">Ejemplo de Petición:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="request.example">Example Request:</h4>
                             <div class="code-block">
                                 <code>GET /programs/4886905521176576/customers/6629146321223680</code>
                             </div>
@@ -320,16 +320,16 @@
                         <div id="create-customer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-post px-3 py-1 rounded-full text-sm font-mono">POST</span>
-                                <h3 class="text-xl font-semibold text-white">Crear un Cliente</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="customers.create.title">Create a Customer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Crea un nuevo cliente en un programa de lealtad.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="customers.create.description">Creates a new customer in a loyalty program.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block mb-4">
                                 <code>POST /programs/{programId}/customers</code>
                             </div>
 
-                            <h4 class="text-emerald-400 font-semibold mb-2">Cuerpo de la Petición (JSON):</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="request.body">Request Body (JSON):</h4>
                             <div class="code-block">
 <code>{
     "firstName": "Ana",
@@ -344,16 +344,16 @@
                         <div id="update-customer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-put px-3 py-1 rounded-full text-sm font-mono">PUT</span>
-                                <h3 class="text-xl font-semibold text-white">Actualizar un Cliente</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="customers.update.title">Update a Customer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Actualiza los datos de un cliente existente.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="customers.update.description">Updates an existing customer's data.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block mb-4">
                                 <code>PUT /programs/{programId}/customers/{customerId}</code>
                             </div>
 
-                            <h4 class="text-emerald-400 font-semibold mb-2">Cuerpo de la Petición (JSON):</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="request.body">Request Body (JSON):</h4>
                             <div class="code-block">
 <code>{
     "firstName": "Ana",
@@ -367,11 +367,11 @@
                         <div id="delete-customer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-delete px-3 py-1 rounded-full text-sm font-mono">DELETE</span>
-                                <h3 class="text-xl font-semibold text-white">Borrar un Cliente</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="customers.delete.title">Delete a Customer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Elimina permanentemente a un cliente.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="customers.delete.description">Permanently deletes a customer.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block">
                                 <code>DELETE /programs/{programId}/customers/{customerId}</code>
                             </div>
@@ -381,16 +381,16 @@
                         <div id="add-points" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-post px-3 py-1 rounded-full text-sm font-mono">POST</span>
-                                <h3 class="text-xl font-semibold text-white">Añadir Puntos a un Cliente</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="customers.add-points.title">Add Points to a Customer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Añade una cantidad específica de puntos a un cliente.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="customers.add-points.description">Adds a specific amount of points to a customer.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block mb-4">
                                 <code>POST /programs/{programId}/customers/{customerId}/points/add</code>
                             </div>
 
-                            <h4 class="text-emerald-400 font-semibold mb-2">Cuerpo de la Petición (JSON):</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="request.body">Request Body (JSON):</h4>
                             <div class="code-block">
 <code>{
     "points": 10
@@ -409,11 +409,11 @@
                         <div id="list-offers" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-get px-3 py-1 rounded-full text-sm font-mono">GET</span>
-                                <h3 class="text-xl font-semibold text-white">Listar Ofertas</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="offers.list.title">List Offers</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Devuelve una lista de todas las ofertas (recompensas) de un programa.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="offers.list.description">Returns a list of all offers (rewards) from a program.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block">
                                 <code>GET /programs/{programId}/offers</code>
                             </div>
@@ -423,16 +423,16 @@
                         <div id="create-offer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-post px-3 py-1 rounded-full text-sm font-mono">POST</span>
-                                <h3 class="text-xl font-semibold text-white">Crear una Oferta</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="offers.create.title">Create an Offer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Crea una nueva oferta o recompensa.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="offers.create.description">Creates a new offer or reward.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block mb-4">
                                 <code>POST /programs/{programId}/offers</code>
                             </div>
 
-                            <h4 class="text-emerald-400 font-semibold mb-2">Cuerpo de la Petición (JSON):</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="request.body">Request Body (JSON):</h4>
                             <div class="code-block">
 <code>{
     "name": "Café Gratis",
@@ -447,11 +447,11 @@
                         <div id="update-offer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-post px-3 py-1 rounded-full text-sm font-mono">POST</span>
-                                <h3 class="text-xl font-semibold text-white">Actualizar una Oferta</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="offers.update.title">Update an Offer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Actualiza una oferta existente.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="offers.update.description">Updates an existing offer.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block">
                                 <code>POST /programs/{programId}/offers/{offerId}</code>
                             </div>
@@ -461,11 +461,11 @@
                         <div id="delete-offer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-delete px-3 py-1 rounded-full text-sm font-mono">DELETE</span>
-                                <h3 class="text-xl font-semibold text-white">Borrar una Oferta</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="offers.delete.title">Delete an Offer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Elimina una oferta. <strong class="text-amber-400">Nota:</strong> Solo se pueden eliminar las ofertas en estado "Borrador" (Draft).</p>
+                            <p class="text-gray-300 mb-4" data-i18n="offers.delete.description">Deletes an offer. <strong class="text-amber-400">Note:</strong> Only offers in "Draft" status can be deleted.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block">
                                 <code>DELETE /programs/{programId}/offers/{offerId}</code>
                             </div>
@@ -475,11 +475,11 @@
                         <div id="publish-offer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-post px-3 py-1 rounded-full text-sm font-mono">POST</span>
-                                <h3 class="text-xl font-semibold text-white">Publicar una Oferta</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="offers.publish.title">Publish an Offer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Cambia el estado de una oferta de "Borrador" a "Publicada".</p>
+                            <p class="text-gray-300 mb-4" data-i18n="offers.publish.description">Changes an offer status from "Draft" to "Published".</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block">
                                 <code>POST /programs/{programId}/offers/{offerId}/publish</code>
                             </div>
@@ -489,11 +489,11 @@
                         <div id="cancel-offer" class="mb-8 p-6 bg-gray-800/30 rounded-lg border border-gray-700/50">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="method-post px-3 py-1 rounded-full text-sm font-mono">POST</span>
-                                <h3 class="text-xl font-semibold text-white">Cancelar una Oferta</h3>
+                                <h3 class="text-xl font-semibold text-white" data-i18n="offers.cancel.title">Cancel an Offer</h3>
                             </div>
-                            <p class="text-gray-300 mb-4">Cambia el estado de una oferta "Publicada" para desactivarla.</p>
+                            <p class="text-gray-300 mb-4" data-i18n="offers.cancel.description">Changes a "Published" offer status to deactivate it.</p>
                             
-                            <h4 class="text-emerald-400 font-semibold mb-2">Endpoint:</h4>
+                            <h4 class="text-emerald-400 font-semibold mb-2" data-i18n="endpoint.label">Endpoint:</h4>
                             <div class="code-block">
                                 <code>POST /programs/{programId}/offers/{offerId}/cancel</code>
                             </div>
