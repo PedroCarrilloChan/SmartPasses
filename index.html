@@ -177,17 +177,29 @@
                         <span class="text-white">Smart</span><span class="text-emerald-400">Passes</span>
                     </a>
                     <div class="hidden md:flex items-center space-x-8">
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Servicios</a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Precios</a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Nosotros</a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Contacto</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.services">Services</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.pricing">Pricing</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.about">About</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.contact">Contact</a>
                     </div>
-                    <button class="hidden md:inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-lg transition-transform duration-300 hover:scale-105">
-                        Iniciar Sesión
-                    </button>
-                    <button class="md:hidden text-white" aria-label="Abrir menú">
-                        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <!-- Language Toggle -->
+                        <button id="language-toggle" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
+                            <span id="current-lang">EN</span> | <span id="other-lang" class="text-gray-600">ES</span>
+                        </button>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-lg transition-transform duration-300 hover:scale-105" data-i18n="nav.login">
+                            Sign In
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <!-- Mobile Language Toggle -->
+                        <button id="mobile-language-toggle" class="md:hidden text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
+                            <span id="mobile-current-lang">EN</span>
+                        </button>
+                        <button class="md:hidden text-white" aria-label="Open menu">
+                            <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
                 </nav>
             </header>
 
@@ -195,14 +207,14 @@
             <main class="w-full max-w-7xl mx-auto mt-16 md:mt-24 text-center">
                 <div class="fade-in-up">
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white leading-tight">
-                        El futuro del <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Marketing Digital</span> está en su bolsillo 🚀
+                        <span data-i18n="hero.title">The future of <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Digital Marketing</span> is in your pocket 🚀</span>
                     </h1>
-                    <p class="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-300">
-                        Crea, distribuye y gestiona pases digitales para Apple Wallet y Google Wallet. Conecta con tus clientes de una forma directa, personal y moderna.
+                    <p class="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-gray-300" data-i18n="hero.subtitle">
+                        Create, distribute and manage digital passes for Apple Wallet and Google Wallet. Connect with your customers in a direct, personal and modern way.
                     </p>
                     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 shadow-lg">Empieza Gratis</a>
-                        <a href="#" class="w-full sm:w-auto glass-effect hover:bg-white/10 text-white font-medium py-3 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105">Ver Demo</a>
+                        <a href="#" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 shadow-lg" data-i18n="hero.cta.primary">Start Free</a>
+                        <a href="#" class="w-full sm:w-auto glass-effect hover:bg-white/10 text-white font-medium py-3 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105" data-i18n="hero.cta.secondary">View Demo</a>
                     </div>
                 </div>
 
@@ -359,9 +371,9 @@
             <section class="w-full max-w-7xl mx-auto mb-16">
                 <div class="text-center fade-in-up">
                     <p class="text-sm text-gray-500 mb-3">
-                        ¿Eres desarrollador? 
-                        <a href="api-docs.html" class="text-gray-400 hover:text-gray-300 underline underline-offset-2 transition-colors duration-300">
-                            Consulta nuestra documentación API
+                        <span data-i18n="api.dev.question">Are you a developer?</span>
+                        <a href="api-docs.html" class="text-gray-400 hover:text-gray-300 underline underline-offset-2 transition-colors duration-300" data-i18n="api.dev.link">
+                            Check our API documentation
                         </a>
                     </p>
                 </div>
@@ -616,6 +628,82 @@
             document.querySelectorAll('.fade-in-up').forEach(element => {
                 fadeInObserver.observe(element);
             });
+
+            // --- INTERNATIONALIZATION SYSTEM ---
+            const translations = {
+                en: {
+                    'nav.services': 'Services',
+                    'nav.pricing': 'Pricing',
+                    'nav.about': 'About',
+                    'nav.contact': 'Contact',
+                    'nav.login': 'Sign In',
+                    'hero.title': 'The future of <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Digital Marketing</span> is in your pocket 🚀',
+                    'hero.subtitle': 'Create, distribute and manage digital passes for Apple Wallet and Google Wallet. Connect with your customers in a direct, personal and modern way.',
+                    'hero.cta.primary': 'Start Free',
+                    'hero.cta.secondary': 'View Demo',
+                    'api.dev.question': 'Are you a developer?',
+                    'api.dev.link': 'Check our API documentation'
+                },
+                es: {
+                    'nav.services': 'Servicios',
+                    'nav.pricing': 'Precios',
+                    'nav.about': 'Nosotros',
+                    'nav.contact': 'Contacto',
+                    'nav.login': 'Iniciar Sesión',
+                    'hero.title': 'El futuro del <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Marketing Digital</span> está en su bolsillo 🚀',
+                    'hero.subtitle': 'Crea, distribuye y gestiona pases digitales para Apple Wallet y Google Wallet. Conecta con tus clientes de una forma directa, personal y moderna.',
+                    'hero.cta.primary': 'Empieza Gratis',
+                    'hero.cta.secondary': 'Ver Demo',
+                    'api.dev.question': '¿Eres desarrollador?',
+                    'api.dev.link': 'Consulta nuestra documentación API'
+                }
+            };
+
+            let currentLang = 'en'; // Default to English
+
+            function updateLanguage(lang) {
+                currentLang = lang;
+                
+                // Update language toggle buttons
+                const currentLangEl = document.getElementById('current-lang');
+                const otherLangEl = document.getElementById('other-lang');
+                const mobileCurrentLangEl = document.getElementById('mobile-current-lang');
+                
+                if (lang === 'en') {
+                    if (currentLangEl) currentLangEl.textContent = 'EN';
+                    if (otherLangEl) otherLangEl.textContent = 'ES';
+                    if (mobileCurrentLangEl) mobileCurrentLangEl.textContent = 'EN';
+                } else {
+                    if (currentLangEl) currentLangEl.textContent = 'ES';
+                    if (otherLangEl) otherLangEl.textContent = 'EN';
+                    if (mobileCurrentLangEl) mobileCurrentLangEl.textContent = 'ES';
+                }
+
+                // Update all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+
+                // Store language preference
+                localStorage.setItem('language', lang);
+            }
+
+            // Language toggle functionality
+            function toggleLanguage() {
+                const newLang = currentLang === 'en' ? 'es' : 'en';
+                updateLanguage(newLang);
+            }
+
+            // Initialize language on page load
+            const savedLang = localStorage.getItem('language') || 'en';
+            updateLanguage(savedLang);
+
+            // Add event listeners for language toggles
+            document.getElementById('language-toggle')?.addEventListener('click', toggleLanguage);
+            document.getElementById('mobile-language-toggle')?.addEventListener('click', toggleLanguage);
         });
     </script>
 </body>
