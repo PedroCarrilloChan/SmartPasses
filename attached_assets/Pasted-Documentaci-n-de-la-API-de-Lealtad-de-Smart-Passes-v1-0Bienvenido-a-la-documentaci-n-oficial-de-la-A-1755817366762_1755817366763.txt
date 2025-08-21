@@ -1,0 +1,43 @@
+Documentación de la API de Lealtad de Smart Passes v1.0Bienvenido a la documentación oficial de la API de Lealtad de Smart Passes. Esta API te permite gestionar mediante programación todos los aspectos de tus programas de lealtad para billeteras móviles.URL BaseTodas las URLs a las que se hace referencia en esta documentación tienen la siguiente URL base:https://pass.smartpasses.io/api/v1/loyalty/AutenticaciónTodas las peticiones a la API deben ser autorizadas con una App Key válida. La clave debe ser enviada en la cabecera Authorization de cada petición.Ejemplo de Cabecera:Authorization: TU_APP_KEY_AQUIFormato y Códigos de EstadoLa API utiliza JSON para todas las peticiones y respuestas. Se aplican los métodos HTTP estándar (GET, POST, PUT, DELETE).Las respuestas exitosas devolverán un código de estado 200 OK.Los errores del cliente (ej. datos faltantes) devolverán un código 400 Bad Request o 422 Unprocessable Entity con una descripción del error en formato JSON.Los errores de autenticación devolverán un código 403 Forbidden.Los recursos no encontrados devolverán un código 404 Not Found.Recursos de la APIClientes (Customers)Listar ClientesEndpoint: GET /programs/{programId}/customersDescripción: Devuelve una lista de todos los clientes de un programa de lealtad específico.Ejemplo de Petición:GET /programs/4886905521176576/customers
+Ejemplo de Respuesta:[
+    {
+        "id": 1869,
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "phone": "",
+        "points": 0,
+        "humanName": "Anónimo #1869"
+    },
+    {
+        "id": 1870,
+        "firstName": "Juan",
+        "lastName": "Pérez",
+        "email": "juan.perez@example.com",
+        "phone": "+529994116533",
+        "points": 5,
+        "humanName": "Juan Pérez"
+    }
+]
+Obtener un ClienteEndpoint: GET /programs/{programId}/customers/{customerId}Descripción: Devuelve los detalles de un cliente específico.Ejemplo de Petición:GET /programs/4886905521176576/customers/6629146321223680
+Crear un ClienteEndpoint: POST /programs/{programId}/customersDescripción: Crea un nuevo cliente en un programa de lealtad.Cuerpo de la Petición (JSON):{
+    "firstName": "Ana",
+    "lastName": "García",
+    "email": "ana.garcia@example.com",
+    "phone": "+525551234567"
+}
+Actualizar un ClienteEndpoint: PUT /programs/{programId}/customers/{customerId}Descripción: Actualiza los datos de un cliente existente.Cuerpo de la Petición (JSON):{
+    "firstName": "Ana",
+    "lastName": "García López",
+    "points": 25
+}
+Borrar un ClienteEndpoint: DELETE /programs/{programId}/customers/{customerId}Descripción: Elimina permanentemente a un cliente.Añadir Puntos a un ClienteEndpoint: POST /programs/{programId}/customers/{customerId}/points/addDescripción: Añade una cantidad específica de puntos a un cliente.Cuerpo de la Petición (JSON):{
+    "points": 10
+}
+Ofertas (Offers)Listar OfertasEndpoint: GET /programs/{programId}/offersDescripción: Devuelve una lista de todas las ofertas (recompensas) de un programa.Crear una OfertaEndpoint: POST /programs/{programId}/offersDescripción: Crea una nueva oferta o recompensa.Cuerpo de la Petición (JSON):{
+    "name": "Café Gratis",
+    "description": "Canjea 10 puntos por un café americano.",
+    "pointsCost": 10,
+    "autoClaim": true
+}
+Actualizar una OfertaEndpoint: POST /programs/{programId}/offers/{offerId}Descripción: Actualiza una oferta existente.Borrar una OfertaEndpoint: DELETE /programs/{programId}/offers/{offerId}Descripción: Elimina una oferta. Nota: Solo se pueden eliminar las ofertas en estado "Borrador" (Draft).Publicar una OfertaEndpoint: POST /programs/{programId}/offers/{offerId}/publishDescripción: Cambia el estado de una oferta de "Borrador" a "Publicada".Cancelar una OfertaEndpoint: POST /programs/{programId}/offers/{offerId}/cancelDescripción: Cambia el estado de una oferta "Publicada" para desactivarla.
