@@ -505,7 +505,13 @@
 
         <!-- ===== Footer ===== -->
         <footer class="w-full max-w-7xl mx-auto text-center py-10 border-t border-white/10">
-            <p class="text-gray-400" data-i18n="footer.rights">&copy; 2025 Smart Passes. All rights reserved.</p>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-400" data-i18n="footer.rights">&copy; 2025 Smart Passes. All rights reserved.</p>
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="privacy-policy.html" class="text-gray-500 hover:text-gray-300 transition-colors duration-300" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-gray-500 hover:text-gray-300 transition-colors duration-300" data-i18n="footer.terms">Terms of Service</a>
+                </div>
+            </div>
         </footer>
     </div>
 
@@ -625,7 +631,9 @@
                     'request.example': 'Example Request:',
                     'response.example': 'Example Response:',
                     'request.body': 'Request Body (JSON):',
-                    'footer.rights': '&copy; 2025 Smart Passes. All rights reserved.'
+                    'footer.rights': '&copy; 2025 Smart Passes. All rights reserved.',
+                    'footer.privacy': 'Privacy Policy',
+                    'footer.terms': 'Terms of Service'
                 },
                 es: {
                     'nav.home': 'Inicio',
@@ -701,7 +709,9 @@
                     'request.example': 'Ejemplo de Petición:',
                     'response.example': 'Ejemplo de Respuesta:',
                     'request.body': 'Cuerpo de la Petición (JSON):',
-                    'footer.rights': '&copy; 2025 Smart Passes. Todos los derechos reservados.'
+                    'footer.rights': '&copy; 2025 Smart Passes. Todos los derechos reservados.',
+                    'footer.privacy': 'Política de Privacidad',
+                    'footer.terms': 'Términos de Servicio'
                 }
             };
 

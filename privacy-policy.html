@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Smart Passes</title>
+    <meta name="description" content="Privacy Policy for Smart Passes - Learn how we collect, use, and protect your personal information.">
+
+    <!-- Carga optimizada de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap">
+
+    <!-- Carga de CSS de Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Estilos base y configuración de la fuente */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Clase para el efecto de cristal (Glassmorphism) */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animación para aparecer gradualmente */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Círculos decorativos del fondo */
+        .background-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.4;
+            z-index: -2;
+        }
+        .shape1 { width: 400px; height: 400px; background: #2563eb; top: -100px; left: -100px; }
+        .shape2 { width: 350px; height: 350px; background: #10b981; bottom: -50px; right: -80px; }
+        .shape3 { width: 250px; height: 250px; background: #0ea5e9; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <!-- Formas de fondo para el efecto visual -->
+    <div class="background-shape shape1"></div>
+    <div class="background-shape shape2"></div>
+    <div class="background-shape shape3"></div>
+
+    <div class="relative min-h-screen w-full px-4 sm:px-6 lg:px-8 z-10">
+
+        <!-- ===== Header ===== -->
+        <header class="w-full max-w-7xl mx-auto py-6">
+            <nav class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold tracking-tight">
+                    <span class="text-white">Smart</span><span class="text-emerald-400">Passes</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.home">Home</a>
+                    <a href="api-docs.html" class="text-gray-300 hover:text-white transition-colors duration-300" data-i18n="nav.api">API Docs</a>
+                    
+                    <!-- Language Toggle -->
+                    <div class="relative">
+                        <button id="lang-toggle" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-2">
+                            <span id="current-lang">EN</span>
+                            <div id="globe-icon" class="w-4 h-4"></div>
+                        </button>
+                    </div>
+                </div>
+                <button class="hidden md:inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-lg transition-transform duration-300 hover:scale-105">
+                    <a href="index.html" class="text-white no-underline" data-i18n="nav.back">Back</a>
+                </button>
+                <button class="md:hidden text-white" aria-label="Open menu">
+                    <div id="menu-icon" class="w-6 h-6"></div>
+                </button>
+            </nav>
+        </header>
+
+        <!-- ===== Hero Section ===== -->
+        <section class="w-full max-w-4xl mx-auto mt-16 md:mt-24 text-center mb-20">
+            <div class="fade-in-up">
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-white leading-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400" data-i18n="hero.title">Privacy Policy</span>
+                </h1>
+                <p class="max-w-2xl mx-auto mt-6 text-lg text-gray-300" data-i18n="hero.subtitle">
+                    Learn how we collect, use, and protect your personal information.
+                </p>
+                <p class="text-sm text-gray-500 mt-4" data-i18n="hero.date">Last Updated: September 11, 2025</p>
+            </div>
+        </section>
+
+        <!-- ===== Main Content ===== -->
+        <div class="w-full max-w-4xl mx-auto mb-20">
+            <main class="space-y-8">
+
+                <!-- Introduction -->
+                <section class="fade-in-up">
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="intro.title">1. Introduction</h2>
+                        <p class="text-gray-300 leading-relaxed" data-i18n="intro.content">
+                            Welcome to Smart Passes. This Privacy Policy explains how Umbrella Marketing LLC ("We", "us", "our") collects, uses, shares, and protects information in connection with our digital pass services (the "Service").
+                        </p>
+                        <p class="text-gray-300 leading-relaxed mt-4" data-i18n="intro.agreement">
+                            By using our Service, you agree to the collection and use of information in accordance with this policy. Our address for the purpose of this notice is [Street Address, City, MD, ZIP Code, USA].
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Information We Collect -->
+                <section class="fade-in-up">
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="collect.title">2. Information We Collect</h2>
+                        <p class="text-gray-300 leading-relaxed mb-6" data-i18n="collect.intro">
+                            To provide and improve our Service, we collect several different types of information:
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-lg font-semibold text-emerald-400 mb-3" data-i18n="collect.direct.title">A) Information You Provide to Us Directly:</h3>
+                                <ul class="space-y-2 text-gray-300 ml-4">
+                                    <li data-i18n="collect.direct.registration"><strong class="text-white">Registration and Contact Data:</strong> When you create an account or contact us, we may collect your name, email address, phone number, and any other information you choose to provide.</li>
+                                    <li data-i18n="collect.direct.pass"><strong class="text-white">Digital Pass Information:</strong> The data you enter when creating or receiving a digital pass, such as your name, membership information, or loyalty points.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-emerald-400 mb-3" data-i18n="collect.tech.title">B) Information Collected Through Our Technology Platform:</h3>
+                                <ul class="space-y-2 text-gray-300 ml-4">
+                                    <li data-i18n="collect.tech.usage"><strong class="text-white">Pass Usage Data:</strong> We collect information about how and when you interact with your digital passes, such as validations, updates, and views.</li>
+                                    <li data-i18n="collect.tech.device"><strong class="text-white">Device Information:</strong> We collect information about the mobile device you use to access the Service, including the device identifier and operating system.</li>
+                                    <li data-i18n="collect.tech.location"><strong class="text-white">Location Information (with your consent):</strong> If you enable location services, we may receive information about your location to send relevant notifications. You can disable this at any time in your device settings.</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-emerald-400 mb-3" data-i18n="collect.auto.title">C) Information We Collect Automatically:</h3>
+                                <ul class="space-y-2 text-gray-300 ml-4">
+                                    <li data-i18n="collect.auto.cookies"><strong class="text-white">Cookies and Similar Technologies:</strong> We use cookies on our website to operate and administer the service, as well as to collect analytics data.</li>
+                                    <li data-i18n="collect.auto.analytics"><strong class="text-white">Analytics Data:</strong> We use third-party services (such as Google Analytics) to help us understand the usage of the Service.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- How We Use Your Information -->
+                <section class="fade-in-up">
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="use.title">3. How We Use Your Information</h2>
+                        <p class="text-gray-300 leading-relaxed mb-4" data-i18n="use.intro">
+                            We use the information we collect for the following purposes:
+                        </p>
+                        <ul class="space-y-2 text-gray-300 ml-4">
+                            <li data-i18n="use.provide">• To provide, maintain, and improve our Service.</li>
+                            <li data-i18n="use.process">• To process your transactions and manage your digital passes.</li>
+                            <li data-i18n="use.communicate">• To communicate with you, including sending updates, security alerts, and support messages.</li>
+                            <li data-i18n="use.marketing">• To send marketing communications (provided we have your consent).</li>
+                            <li data-i18n="use.monitor">• To monitor and analyze usage trends and activities.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- How We Share Your Information -->
+                <section class="fade-in-up">
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="share.title">4. How We Share Your Information</h2>
+                        <p class="text-gray-300 leading-relaxed mb-4" data-i18n="share.intro">
+                            We do not share your personal information with third parties, except in the following circumstances:
+                        </p>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-gray-300" data-i18n="share.providers"><strong class="text-white">Service Providers:</strong> We share information with third-party vendors and service providers that perform services on our behalf, such as the underlying technology platform that allows us to offer the digital passes, cloud hosting providers, and analytics tools.</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-300" data-i18n="share.legal"><strong class="text-white">Legal Compliance:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- International Data Transfer -->
+                <section class="fade-in-up">
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="transfer.title">5. International Data Transfer</h2>
+                        <p class="text-gray-300 leading-relaxed" data-i18n="transfer.content">
+                            Please be aware that your personal information will be transferred to, processed, and stored on our servers located in the United States. Data protection laws in the United States may differ from those in your country of residence. We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Your Rights -->
+                <section class="fade-in-up">
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="rights.title">6. Your Rights</h2>
+                        <p class="text-gray-300 leading-relaxed" data-i18n="rights.content">
+                            Depending on your location, you may have certain rights regarding your personal information, such as the right to Access, Rectify, Cancel, or Oppose the processing of your data (ARCO rights for users in Mexico). To exercise these rights, please contact us at <a href="mailto:privacidad@smartpasses.net" class="text-emerald-400 hover:text-emerald-300">privacidad@smartpasses.net</a>.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Contact Us -->
+                <section class="fade-in-up">
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-white mb-4" data-i18n="contact.title">7. Contact Us</h2>
+                        <p class="text-gray-300 leading-relaxed mb-4" data-i18n="contact.intro">
+                            If you have any questions about this Privacy Policy, please contact us:
+                        </p>
+                        <div class="text-gray-300">
+                            <p><strong class="text-white">Umbrella Marketing LLC</strong></p>
+                            <p data-i18n="contact.email">Email: <a href="mailto:privacidad@smartpasses.net" class="text-emerald-400 hover:text-emerald-300">privacidad@smartpasses.net</a></p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+
+        <!-- ===== Footer ===== -->
+        <footer class="w-full max-w-7xl mx-auto text-center py-10 border-t border-white/10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-400" data-i18n="footer.rights">&copy; 2025 Smart Passes. All rights reserved.</p>
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="privacy-policy.html" class="text-emerald-400 font-medium" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-gray-500 hover:text-gray-300 transition-colors duration-300" data-i18n="footer.terms">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Esperar a que Lucide esté disponible
+            const onLucideLoad = () => {
+                const createIcon = (elementId, iconName, size = 28) => {
+                    if (typeof lucide === 'undefined') return;
+                    const iconElement = document.getElementById(elementId);
+                    if (iconElement) {
+                        const icon = React.createElement(lucide[iconName], { size: size, className: 'text-current' });
+                        ReactDOM.render(icon, iconElement);
+                    }
+                };
+
+                createIcon('menu-icon', 'Menu');
+                createIcon('globe-icon', 'Globe');
+            };
+
+            // Reintentar cargar iconos si lucide no está listo
+            let lucideCheck = setInterval(() => {
+                if (typeof lucide !== 'undefined') {
+                    clearInterval(lucideCheck);
+                    onLucideLoad();
+                }
+            }, 100);
+
+            // Script para animaciones de aparición al hacer scroll
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach(element => {
+                fadeInObserver.observe(element);
+            });
+
+            // --- INTERNATIONALIZATION SYSTEM ---
+            const translations = {
+                en: {
+                    'nav.home': 'Home',
+                    'nav.api': 'API Docs',
+                    'nav.back': 'Back',
+                    'hero.title': 'Privacy Policy',
+                    'hero.subtitle': 'Learn how we collect, use, and protect your personal information.',
+                    'hero.date': 'Last Updated: September 11, 2025',
+                    'intro.title': '1. Introduction',
+                    'intro.content': 'Welcome to Smart Passes. This Privacy Policy explains how Umbrella Marketing LLC ("We", "us", "our") collects, uses, shares, and protects information in connection with our digital pass services (the "Service").',
+                    'intro.agreement': 'By using our Service, you agree to the collection and use of information in accordance with this policy. Our address for the purpose of this notice is [Street Address, City, MD, ZIP Code, USA].',
+                    'collect.title': '2. Information We Collect',
+                    'collect.intro': 'To provide and improve our Service, we collect several different types of information:',
+                    'collect.direct.title': 'A) Information You Provide to Us Directly:',
+                    'collect.direct.registration': '<strong class="text-white">Registration and Contact Data:</strong> When you create an account or contact us, we may collect your name, email address, phone number, and any other information you choose to provide.',
+                    'collect.direct.pass': '<strong class="text-white">Digital Pass Information:</strong> The data you enter when creating or receiving a digital pass, such as your name, membership information, or loyalty points.',
+                    'collect.tech.title': 'B) Information Collected Through Our Technology Platform:',
+                    'collect.tech.usage': '<strong class="text-white">Pass Usage Data:</strong> We collect information about how and when you interact with your digital passes, such as validations, updates, and views.',
+                    'collect.tech.device': '<strong class="text-white">Device Information:</strong> We collect information about the mobile device you use to access the Service, including the device identifier and operating system.',
+                    'collect.tech.location': '<strong class="text-white">Location Information (with your consent):</strong> If you enable location services, we may receive information about your location to send relevant notifications. You can disable this at any time in your device settings.',
+                    'collect.auto.title': 'C) Information We Collect Automatically:',
+                    'collect.auto.cookies': '<strong class="text-white">Cookies and Similar Technologies:</strong> We use cookies on our website to operate and administer the service, as well as to collect analytics data.',
+                    'collect.auto.analytics': '<strong class="text-white">Analytics Data:</strong> We use third-party services (such as Google Analytics) to help us understand the usage of the Service.',
+                    'use.title': '3. How We Use Your Information',
+                    'use.intro': 'We use the information we collect for the following purposes:',
+                    'use.provide': '• To provide, maintain, and improve our Service.',
+                    'use.process': '• To process your transactions and manage your digital passes.',
+                    'use.communicate': '• To communicate with you, including sending updates, security alerts, and support messages.',
+                    'use.marketing': '• To send marketing communications (provided we have your consent).',
+                    'use.monitor': '• To monitor and analyze usage trends and activities.',
+                    'share.title': '4. How We Share Your Information',
+                    'share.intro': 'We do not share your personal information with third parties, except in the following circumstances:',
+                    'share.providers': '<strong class="text-white">Service Providers:</strong> We share information with third-party vendors and service providers that perform services on our behalf, such as the underlying technology platform that allows us to offer the digital passes, cloud hosting providers, and analytics tools.',
+                    'share.legal': '<strong class="text-white">Legal Compliance:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities.',
+                    'transfer.title': '5. International Data Transfer',
+                    'transfer.content': 'Please be aware that your personal information will be transferred to, processed, and stored on our servers located in the United States. Data protection laws in the United States may differ from those in your country of residence. We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy.',
+                    'rights.title': '6. Your Rights',
+                    'rights.content': 'Depending on your location, you may have certain rights regarding your personal information, such as the right to Access, Rectify, Cancel, or Oppose the processing of your data (ARCO rights for users in Mexico). To exercise these rights, please contact us at <a href="mailto:privacidad@smartpasses.net" class="text-emerald-400 hover:text-emerald-300">privacidad@smartpasses.net</a>.',
+                    'contact.title': '7. Contact Us',
+                    'contact.intro': 'If you have any questions about this Privacy Policy, please contact us:',
+                    'contact.email': 'Email: <a href="mailto:privacidad@smartpasses.net" class="text-emerald-400 hover:text-emerald-300">privacidad@smartpasses.net</a>',
+                    'footer.rights': '&copy; 2025 Smart Passes. All rights reserved.',
+                    'footer.privacy': 'Privacy Policy',
+                    'footer.terms': 'Terms of Service'
+                },
+                es: {
+                    'nav.home': 'Inicio',
+                    'nav.api': 'API Docs',
+                    'nav.back': 'Volver',
+                    'hero.title': 'Política de Privacidad',
+                    'hero.subtitle': 'Aprende cómo recopilamos, usamos y protegemos tu información personal.',
+                    'hero.date': 'Última Actualización: 11 de Septiembre, 2025',
+                    'intro.title': '1. Introducción',
+                    'intro.content': 'Bienvenido a Smart Passes. Esta Política de Privacidad explica cómo Umbrella Marketing LLC ("Nosotros", "nos", "nuestro") recopila, usa, comparte y protege la información en conexión con nuestros servicios de pases digitales (el "Servicio").',
+                    'intro.agreement': 'Al usar nuestro Servicio, aceptas la recopilación y uso de información de acuerdo con esta política. Nuestra dirección para efectos de este aviso es [Dirección, Ciudad, MD, Código Postal, USA].',
+                    'collect.title': '2. Información que Recopilamos',
+                    'collect.intro': 'Para proporcionar y mejorar nuestro Servicio, recopilamos varios tipos diferentes de información:',
+                    'collect.direct.title': 'A) Información que nos Proporcionas Directamente:',
+                    'collect.direct.registration': '<strong class="text-white">Datos de Registro y Contacto:</strong> Cuando creas una cuenta o nos contactas, podemos recopilar tu nombre, dirección de correo electrónico, número de teléfono y cualquier otra información que elijas proporcionar.',
+                    'collect.direct.pass': '<strong class="text-white">Información de Pases Digitales:</strong> Los datos que ingresas al crear o recibir un pase digital, como tu nombre, información de membresía o puntos de lealtad.',
+                    'collect.tech.title': 'B) Información Recopilada a Través de Nuestra Plataforma Tecnológica:',
+                    'collect.tech.usage': '<strong class="text-white">Datos de Uso de Pases:</strong> Recopilamos información sobre cómo y cuándo interactúas con tus pases digitales, como validaciones, actualizaciones y visualizaciones.',
+                    'collect.tech.device': '<strong class="text-white">Información del Dispositivo:</strong> Recopilamos información sobre el dispositivo móvil que usas para acceder al Servicio, incluyendo el identificador del dispositivo y el sistema operativo.',
+                    'collect.tech.location': '<strong class="text-white">Información de Ubicación (con tu consentimiento):</strong> Si habilitas los servicios de ubicación, podemos recibir información sobre tu ubicación para enviar notificaciones relevantes. Puedes deshabilitarlo en cualquier momento en la configuración de tu dispositivo.',
+                    'collect.auto.title': 'C) Información que Recopilamos Automáticamente:',
+                    'collect.auto.cookies': '<strong class="text-white">Cookies y Tecnologías Similares:</strong> Usamos cookies en nuestro sitio web para operar y administrar el servicio, así como para recopilar datos analíticos.',
+                    'collect.auto.analytics': '<strong class="text-white">Datos Analíticos:</strong> Usamos servicios de terceros (como Google Analytics) para ayudarnos a entender el uso del Servicio.',
+                    'use.title': '3. Cómo Usamos tu Información',
+                    'use.intro': 'Usamos la información que recopilamos para los siguientes propósitos:',
+                    'use.provide': '• Para proporcionar, mantener y mejorar nuestro Servicio.',
+                    'use.process': '• Para procesar tus transacciones y gestionar tus pases digitales.',
+                    'use.communicate': '• Para comunicarnos contigo, incluyendo el envío de actualizaciones, alertas de seguridad y mensajes de soporte.',
+                    'use.marketing': '• Para enviar comunicaciones de marketing (siempre que tengamos tu consentimiento).',
+                    'use.monitor': '• Para monitorear y analizar tendencias y actividades de uso.',
+                    'share.title': '4. Cómo Compartimos tu Información',
+                    'share.intro': 'No compartimos tu información personal con terceros, excepto en las siguientes circunstancias:',
+                    'share.providers': '<strong class="text-white">Proveedores de Servicios:</strong> Compartimos información con proveedores y prestadores de servicios de terceros que realizan servicios en nuestro nombre, como la plataforma tecnológica subyacente que nos permite ofrecer los pases digitales, proveedores de alojamiento en la nube y herramientas analíticas.',
+                    'share.legal': '<strong class="text-white">Cumplimiento Legal:</strong> Podemos divulgar tu información si es requerido por ley o en respuesta a solicitudes válidas de autoridades públicas.',
+                    'transfer.title': '5. Transferencia Internacional de Datos',
+                    'transfer.content': 'Ten en cuenta que tu información personal será transferida, procesada y almacenada en nuestros servidores ubicados en Estados Unidos. Las leyes de protección de datos en Estados Unidos pueden diferir de las de tu país de residencia. Tomaremos todas las medidas razonablemente necesarias para asegurar que tus datos sean tratados de forma segura y de acuerdo con esta Política de Privacidad.',
+                    'rights.title': '6. Tus Derechos',
+                    'rights.content': 'Dependiendo de tu ubicación, puedes tener ciertos derechos con respecto a tu información personal, como el derecho de Acceso, Rectificación, Cancelación u Oposición al procesamiento de tus datos (derechos ARCO para usuarios en México). Para ejercer estos derechos, por favor contáctanos en <a href="mailto:privacidad@smartpasses.net" class="text-emerald-400 hover:text-emerald-300">privacidad@smartpasses.net</a>.',
+                    'contact.title': '7. Contáctanos',
+                    'contact.intro': 'Si tienes alguna pregunta sobre esta Política de Privacidad, por favor contáctanos:',
+                    'contact.email': 'Email: <a href="mailto:privacidad@smartpasses.net" class="text-emerald-400 hover:text-emerald-300">privacidad@smartpasses.net</a>',
+                    'footer.rights': '&copy; 2025 Smart Passes. Todos los derechos reservados.',
+                    'footer.privacy': 'Política de Privacidad',
+                    'footer.terms': 'Términos de Servicio'
+                }
+            };
+
+            let currentLang = 'en'; // Default to English
+
+            function updateLanguage(lang) {
+                currentLang = lang;
+                
+                // Update language toggle button
+                const currentLangEl = document.getElementById('current-lang');
+                if (lang === 'en') {
+                    if (currentLangEl) currentLangEl.textContent = 'EN';
+                } else {
+                    if (currentLangEl) currentLangEl.textContent = 'ES';
+                }
+
+                // Update all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+
+                // Update document language attribute
+                document.documentElement.lang = lang;
+            }
+
+            // Language toggle functionality
+            const langToggle = document.getElementById('lang-toggle');
+            if (langToggle) {
+                langToggle.addEventListener('click', () => {
+                    const newLang = currentLang === 'en' ? 'es' : 'en';
+                    updateLanguage(newLang);
+                });
+            }
+
+            // Initialize with English
+            updateLanguage('en');
+        });
+    </script>
+</body>
+</html>
