@@ -1,0 +1,70 @@
+Privacy Policy
+
+Last Updated: September 11, 2025
+
+1. Introduction
+
+Welcome to Smart Passes. This Privacy Policy explains how Umbrella Marketing LLC ("We", "us", "our") collects, uses, shares, and protects information in connection with our digital pass services (the "Service").
+
+By using our Service, you agree to the collection and use of information in accordance with this policy. Our address for the purpose of this notice is [Street Address, City, MD, ZIP Code, USA].
+
+2. Information We Collect
+
+To provide and improve our Service, we collect several different types of information:
+
+A) Information You Provide to Us Directly:
+
+Registration and Contact Data: When you create an account or contact us, we may collect your name, email address, phone number, and any other information you choose to provide.
+
+Digital Pass Information: The data you enter when creating or receiving a digital pass, such as your name, membership information, or loyalty points.
+
+B) Information Collected Through Our Technology Platform:
+
+Pass Usage Data: We collect information about how and when you interact with your digital passes, such as validations, updates, and views.
+
+Device Information: We collect information about the mobile device you use to access the Service, including the device identifier and operating system.
+
+Location Information (with your consent): If you enable location services, we may receive information about your location to send relevant notifications. You can disable this at any time in your device settings.
+
+C) Information We Collect Automatically:
+
+Cookies and Similar Technologies: We use cookies on our website to operate and administer the service, as well as to collect analytics data.
+
+Analytics Data: We use third-party services (such as Google Analytics) to help us understand the usage of the Service.
+
+3. How We Use Your Information
+
+We use the information we collect for the following purposes:
+
+To provide, maintain, and improve our Service.
+
+To process your transactions and manage your digital passes.
+
+To communicate with you, including sending updates, security alerts, and support messages.
+
+To send marketing communications (provided we have your consent).
+
+To monitor and analyze usage trends and activities.
+
+4. How We Share Your Information
+
+We do not share your personal information with third parties, except in the following circumstances:
+
+Service Providers: We share information with third-party vendors and service providers that perform services on our behalf, such as the underlying technology platform that allows us to offer the digital passes, cloud hosting providers, and analytics tools.
+
+Legal Compliance: We may disclose your information if required to do so by law or in response to valid requests by public authorities.
+
+5. International Data Transfer
+
+Please be aware that your personal information will be transferred to, processed, and stored on our servers located in the United States. Data protection laws in the United States may differ from those in your country of residence. We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy.
+
+6. Your Rights
+
+Depending on your location, you may have certain rights regarding your personal information, such as the right to Access, Rectify, Cancel, or Oppose the processing of your data (ARCO rights for users in Mexico). To exercise these rights, please contact us at [privacidad@smartpasses.net].
+
+7. Contact Us
+
+If you have any questions about this Privacy Policy, please contact us:
+Umbrella Marketing LLC
+Email: [privacidad@smartpasses.net]
+
