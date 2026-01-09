@@ -29,6 +29,14 @@ app.get('/wallet', (req, res) => {
   res.sendFile(path.join(__dirname, 'wallet.html'));
 });
 
+app.get('/wallet-privacy-policy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'wallet-privacy-policy.html'));
+});
+
+app.get('/wallet-terms-of-service', (req, res) => {
+  res.sendFile(path.join(__dirname, 'wallet-terms-of-service.html'));
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${PORT}`);
 });

@@ -6,23 +6,27 @@ Website for Smart Passes, a digital wallet marketing platform. Includes the main
 ## Project Structure
 ```
 /
-├── index.html          # Main marketing page for businesses
-├── wallet.html         # Android wallet app landing page (for Play Store)
-├── privacy-policy.html # Privacy policy page
-├── terms-of-service.html # Terms of service page
-├── api-docs.html       # API documentation
-├── server.js           # Express.js server
-├── script.js           # Main JavaScript
-├── style.css           # Additional styles
-├── package.json        # Node.js dependencies
-└── attached_assets/    # Images and assets
+├── index.html              # Main marketing page for businesses
+├── wallet.html             # Android wallet app landing page (for Play Store)
+├── wallet-privacy-policy.html  # Privacy policy for wallet app (Play Store)
+├── wallet-terms-of-service.html # Terms of service for wallet app
+├── privacy-policy.html     # Privacy policy page (main platform)
+├── terms-of-service.html   # Terms of service page (main platform)
+├── api-docs.html           # API documentation
+├── server.js               # Express.js server
+├── script.js               # Main JavaScript
+├── style.css               # Additional styles
+├── package.json            # Node.js dependencies
+└── attached_assets/        # Images and assets
 ```
 
 ## Routes
 - `/` - Main marketing page (B2B)
 - `/wallet` - Android wallet app landing page (B2C, for Play Store)
-- `/privacy-policy` - Privacy policy
-- `/terms-of-service` - Terms of service
+- `/wallet-privacy-policy` - Privacy policy for wallet app (Play Store compliant)
+- `/wallet-terms-of-service` - Terms of service for wallet app
+- `/privacy-policy` - Privacy policy (main platform)
+- `/terms-of-service` - Terms of service (main platform)
 
 ## Tech Stack
 - Node.js with Express.js
