@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Passes Wallet - Tu Billetera Digital para Android</title>
+    <meta name="description" content="Smart Passes Wallet es la app de billetera digital para Android. Guarda tus pases, cupones, tarjetas de lealtad y boletos en un solo lugar. Descarga gratis en Google Play.">
+    <meta name="keywords" content="wallet, billetera digital, pases digitales, cupones, tarjetas de lealtad, Android, Google Wallet, Apple Wallet, Smart Passes">
+    
+    <meta property="og:title" content="Smart Passes Wallet - Tu Billetera Digital">
+    <meta property="og:description" content="Guarda todos tus pases, cupones y tarjetas de lealtad en un solo lugar. Descarga gratis.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/TarjetaGirataria.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Smart Passes Wallet - Tu Billetera Digital">
+    <meta name="twitter:description" content="Guarda todos tus pases, cupones y tarjetas de lealtad en un solo lugar.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        #perspective-wrapper {
+            perspective: 3000px;
+            width: 100%;
+            height: 100%;
+        }
+
+        #digital-dust-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .background-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.4;
+            z-index: -2;
+            transition: transform 0.4s ease-out;
+        }
+        .shape1 { width: 400px; height: 400px; background: #2563eb; top: -100px; left: -100px; }
+        .shape2 { width: 350px; height: 350px; background: #10b981; bottom: -50px; right: -80px; }
+        .shape3 { width: 250px; height: 250px; background: #0ea5e9; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        #page-content {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform;
+        }
+
+        .stat-card {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .stat-card.is-visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .phone-mockup {
+            filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .google-play-badge {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .google-play-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <canvas id="digital-dust-canvas"></canvas>
+
+    <div class="background-shape shape1"></div>
+    <div class="background-shape shape2"></div>
+    <div class="background-shape shape3"></div>
+
+    <div id="perspective-wrapper">
+        <div id="page-content" class="relative min-h-screen w-full px-4 sm:px-6 lg:px-8 z-10">
+
+            <header class="w-full max-w-7xl mx-auto py-6">
+                <nav class="flex items-center justify-between">
+                    <a href="/" class="text-2xl font-bold tracking-tight">
+                        <span class="text-white">Smart</span><span class="text-emerald-400">Passes</span>
+                    </a>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#features" class="text-gray-300 hover:text-white transition-colors duration-300">Funciones</a>
+                        <a href="#how-it-works" class="text-gray-300 hover:text-white transition-colors duration-300">Como Funciona</a>
+                        <a href="#download" class="text-gray-300 hover:text-white transition-colors duration-300">Descargar</a>
+                        <a href="/" class="text-gray-300 hover:text-white transition-colors duration-300">Empresas</a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="#download" class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-5 rounded-lg transition-transform duration-300 hover:scale-105">
+                            Descargar App
+                        </a>
+                    </div>
+                    <button class="md:hidden text-white" aria-label="Abrir menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </nav>
+            </header>
+
+            <main class="w-full max-w-7xl mx-auto mt-16 md:mt-20">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in-up text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 0H6.477A1.477 1.477 0 005 1.477v21.046A1.477 1.477 0 006.477 24h11.046A1.477 1.477 0 0019 22.523V1.477A1.477 1.477 0 0017.523 0zM12 22.5a1 1 0 110-2 1 1 0 010 2zM17 19H7V3h10v16z"/></svg>
+                            Disponible para Android
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-white leading-tight">
+                            Todos tus <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">pases digitales</span> en un solo lugar
+                        </h1>
+                        <p class="max-w-xl mx-auto lg:mx-0 mt-6 text-lg md:text-xl text-gray-300">
+                            Guarda cupones, tarjetas de lealtad, boletos y membresías. Recibe notificaciones y nunca pierdas una oportunidad de ahorro.
+                        </p>
+                        <div class="mt-10 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
+                            <a href="#download" class="google-play-badge">
+                                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" alt="Disponible en Google Play" width="200" height="60">
+                            </a>
+                        </div>
+                        <div class="mt-8 flex items-center justify-center lg:justify-start gap-6 text-sm text-gray-400">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                Gratis
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                Seguro
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                Sin anuncios
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in-up flex justify-center" style="transition-delay: 200ms;">
+                        <div class="phone-mockup relative">
+                            <img src="https://walletclub.s3.us-east-1.amazonaws.com/fidi-Recursos/TarjetaGirataria.png" alt="Smart Passes Wallet App - Vista de pase digital" class="w-64 md:w-72 rounded-3xl shadow-2xl" width="816" height="1600">
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <section id="features" class="w-full max-w-7xl mx-auto my-24 md:my-32">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight fade-in-up">Todo lo que necesitas en tu bolsillo</h2>
+                    <p class="max-w-xl mx-auto mt-4 text-lg text-gray-400 fade-in-up" style="transition-delay: 150ms;">Funciones pensadas para simplificar tu vida.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 200ms;">
+                        <div class="feature-icon bg-blue-500/20">
+                            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Billetera Digital</h3>
+                        <p class="text-gray-300">Guarda todos tus pases, cupones y tarjetas en un solo lugar organizado.</p>
+                    </div>
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 300ms;">
+                        <div class="feature-icon bg-emerald-500/20">
+                            <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Notificaciones</h3>
+                        <p class="text-gray-300">Recibe alertas de ofertas, vencimientos y promociones directamente en tu telefono.</p>
+                    </div>
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 400ms;">
+                        <div class="feature-icon bg-amber-500/20">
+                            <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Ahorra Dinero</h3>
+                        <p class="text-gray-300">Nunca olvides usar tus cupones de descuento ni pierdas puntos de lealtad.</p>
+                    </div>
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 500ms;">
+                        <div class="feature-icon bg-purple-500/20">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Escaneo Rapido</h3>
+                        <p class="text-gray-300">Muestra tu codigo QR o codigo de barras en segundos para usar tus pases.</p>
+                    </div>
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 600ms;">
+                        <div class="feature-icon bg-rose-500/20">
+                            <svg class="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">100% Seguro</h3>
+                        <p class="text-gray-300">Tus datos estan protegidos con la mejor tecnologia de encriptacion.</p>
+                    </div>
+                    <div class="glass-effect p-8 rounded-2xl fade-in-up" style="transition-delay: 700ms;">
+                        <div class="feature-icon bg-cyan-500/20">
+                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Sincronizacion</h3>
+                        <p class="text-gray-300">Tus pases se actualizan automaticamente cuando hay cambios.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="how-it-works" class="w-full max-w-7xl mx-auto my-24 md:my-32">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight fade-in-up">Como Funciona</h2>
+                    <p class="max-w-xl mx-auto mt-4 text-lg text-gray-400 fade-in-up" style="transition-delay: 150ms;">Tres simples pasos para empezar.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center fade-in-up" style="transition-delay: 200ms;">
+                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">1</div>
+                        <h3 class="text-xl font-bold text-white mb-3">Descarga la App</h3>
+                        <p class="text-gray-400">Descarga Smart Passes Wallet gratis desde Google Play Store.</p>
+                    </div>
+                    <div class="text-center fade-in-up" style="transition-delay: 300ms;">
+                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">2</div>
+                        <h3 class="text-xl font-bold text-white mb-3">Agrega tus Pases</h3>
+                        <p class="text-gray-400">Escanea o agrega tus cupones, tarjetas de lealtad y boletos.</p>
+                    </div>
+                    <div class="text-center fade-in-up" style="transition-delay: 400ms;">
+                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">3</div>
+                        <h3 class="text-xl font-bold text-white mb-3">Disfruta</h3>
+                        <p class="text-gray-400">Usa tus pases con un simple toque y recibe notificaciones.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="w-full max-w-7xl mx-auto my-24 md:my-32">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight fade-in-up">Tipos de Pases</h2>
+                    <p class="max-w-xl mx-auto mt-4 text-lg text-gray-400 fade-in-up" style="transition-delay: 150ms;">Guarda todo tipo de pases digitales.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 fade-in-up" style="transition-delay: 200ms;">
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-3">🎟️</div>
+                        <p class="text-white font-medium">Cupones</p>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-3">⭐</div>
+                        <p class="text-white font-medium">Lealtad</p>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-3">🎫</div>
+                        <p class="text-white font-medium">Boletos</p>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-3">💳</div>
+                        <p class="text-white font-medium">Membresías</p>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-3">🎁</div>
+                        <p class="text-white font-medium">Gift Cards</p>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-3">💮</div>
+                        <p class="text-white font-medium">Estampillas</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="download" class="w-full max-w-4xl mx-auto my-24 md:my-32">
+                <div class="glass-effect rounded-3xl p-8 md:p-12 text-center fade-in-up border border-emerald-500/30">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Descarga Smart Passes Wallet</h2>
+                    <p class="max-w-xl mx-auto text-lg text-gray-300 mb-8">Unete a miles de usuarios que ya organizan sus pases digitales de forma inteligente.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.smartpasses.wallet" target="_blank" rel="noopener noreferrer" class="google-play-badge inline-block">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" alt="Disponible en Google Play" width="250" height="75">
+                    </a>
+                    <p class="mt-6 text-sm text-gray-500">Requiere Android 7.0 o superior</p>
+                </div>
+            </section>
+
+            <footer class="w-full max-w-7xl mx-auto py-12 border-t border-gray-800">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <a href="/" class="text-2xl font-bold tracking-tight">
+                            <span class="text-white">Smart</span><span class="text-emerald-400">Passes</span>
+                        </a>
+                        <p class="mt-4 text-gray-400 text-sm">Tu billetera digital para guardar todos tus pases, cupones y tarjetas de lealtad.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Producto</h4>
+                        <ul class="space-y-2 text-gray-400 text-sm">
+                            <li><a href="#features" class="hover:text-white transition-colors">Funciones</a></li>
+                            <li><a href="#how-it-works" class="hover:text-white transition-colors">Como Funciona</a></li>
+                            <li><a href="#download" class="hover:text-white transition-colors">Descargar</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2 text-gray-400 text-sm">
+                            <li><a href="/privacy-policy" class="hover:text-white transition-colors">Politica de Privacidad</a></li>
+                            <li><a href="/terms-of-service" class="hover:text-white transition-colors">Terminos de Servicio</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Mas</h4>
+                        <ul class="space-y-2 text-gray-400 text-sm">
+                            <li><a href="/" class="hover:text-white transition-colors">Smart Passes para Empresas</a></li>
+                            <li><a href="mailto:support@smartpasses.app" class="hover:text-white transition-colors">support@smartpasses.app</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
+                    <p>&copy; 2025 Smart Passes. Todos los derechos reservados.</p>
+                    <p class="mt-4 md:mt-0">Google Play y el logotipo de Google Play son marcas comerciales de Google LLC.</p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('digital-dust-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const particleCount = 80;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.speedY = (Math.random() - 0.5) * 0.5;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                        this.reset();
+                    }
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(16, 185, 129, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up, .stat-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
