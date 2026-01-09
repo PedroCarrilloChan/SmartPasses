@@ -112,99 +112,74 @@
 
         <main class="w-full max-w-4xl mx-auto mt-8 md:mt-12 pb-16">
             <div class="glass-effect rounded-2xl p-8 md:p-12 fade-in-up">
-                <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Privacy Policy</h1>
-                <p class="text-gray-400 mb-8">Smart Passes Wallet App</p>
-                <p class="text-sm text-gray-500 mb-8">Last Updated: September 11, 2025</p>
+                <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Privacy Policy: Smart Passes Wallet</h1>
+                <p class="text-sm text-gray-500 mb-8">Last Updated: January 9, 2026</p>
 
                 <div class="content-section text-gray-300">
 
                     <h2>1. Introduction</h2>
-                    <p>Welcome to Smart Passes Wallet ("we," "our," "us," or the "App"). This Privacy Policy explains how we handle information when you use our mobile application available on Google Play Store.</p>
-                    <p>Smart Passes Wallet is designed to display and organize your digital passes, loyalty cards, coupons, tickets, and memberships. <strong>We are committed to protecting your privacy and we do not collect, store, or share any personal information from our users.</strong></p>
+                    <p>Welcome to Smart Passes Wallet ("we," "our," "us," or the "App"). This Privacy Policy explains how we collect, use, and handle information when you use our mobile application. We are committed to transparency. While Smart Passes Wallet primarily functions offline and stores your passes locally, we use specific technologies to enable essential features like automatic updates and location-based notifications.</p>
 
-                    <h2>2. Information We Do NOT Collect</h2>
-                    <p>Smart Passes Wallet is designed with your privacy as a priority. We want to be completely transparent: <strong>our App does not collect any user data.</strong></p>
-                    <p>Specifically, we do NOT collect:</p>
+                    <h2>2. Information We Collect</h2>
+                    <p>To provide the core functionality of the App, we process the following limited data:</p>
+
+                    <h3>Precise Location Data (Background):</h3>
                     <ul>
-                        <li>Personal identification information (name, email address, phone number)</li>
-                        <li>Location data or GPS information</li>
-                        <li>Device identifiers or advertising IDs</li>
-                        <li>Usage analytics or behavioral data</li>
-                        <li>Contact lists or address books</li>
-                        <li>Photos, videos, or media files</li>
-                        <li>Financial or payment information</li>
-                        <li>Health or fitness data</li>
-                        <li>Browsing history or search queries</li>
-                        <li>Any other personal or sensitive information</li>
+                        <li><strong>Usage:</strong> The App accesses your device's background location solely to detect when you are near the location associated with a stored pass (e.g., a store, airport, or event venue). This triggers a local notification to display the pass on your lock screen.</li>
+                        <li><strong>Privacy:</strong> This processing occurs locally on your device. We do not record, store, or transmit your location history to our servers or any third party.</li>
                     </ul>
 
-                    <h2>3. How the App Works</h2>
-                    <p>Smart Passes Wallet functions entirely on your device (locally). Here's how it works:</p>
+                    <h3>Push Notification Tokens:</h3>
                     <ul>
-                        <li><strong>Local Storage Only:</strong> All digital passes and cards you add to the App are stored locally on your device. This data never leaves your phone.</li>
-                        <li><strong>No Server Communication:</strong> The App does not transmit any of your pass data or personal information to external servers.</li>
-                        <li><strong>No Account Required:</strong> You do not need to create an account or provide any personal information to use the App.</li>
-                        <li><strong>Offline Functionality:</strong> The App works completely offline. No internet connection is required to view your passes.</li>
+                        <li><strong>Usage:</strong> We register a generated anonymous ID (Firebase Cloud Messaging Token) and the Pass Serial Number.</li>
+                        <li><strong>Purpose:</strong> This allows the original Pass Issuer to send real-time updates to your device (e.g., gate changes, balance updates, coupons).</li>
+                    </ul>
+
+                    <h3>Camera:</h3>
+                    <ul>
+                        <li><strong>Usage:</strong> Used strictly for scanning QR codes to import new passes into the App.</li>
+                    </ul>
+
+                    <h2>3. How We Use Your Information</h2>
+                    <p>We use the data described above for the following purposes only:</p>
+                    <ul>
+                        <li>To display passes automatically when they are most relevant (Geofencing).</li>
+                        <li>To specific automatic updates for your digital cards and tickets.</li>
+                        <li>To enable the scanning and adding of new passes.</li>
                     </ul>
 
                     <h2>4. Third-Party Services</h2>
-                    <p>Smart Passes Wallet does not integrate with any third-party services, SDKs, or analytics tools that collect user data. We do not use:</p>
+                    <p>We utilize trusted third-party infrastructure to support specific App features:</p>
                     <ul>
-                        <li>Google Analytics or Firebase Analytics</li>
-                        <li>Advertising networks or ad tracking</li>
-                        <li>Crash reporting tools that collect personal data</li>
-                        <li>Social media login or integration</li>
-                        <li>Any other third-party data collection services</li>
+                        <li><strong>Google Firebase (Firestore & Cloud Messaging):</strong> Used to facilitate the delivery of secure, real-time updates for your passes.</li>
+                        <li><strong>Pass Issuers:</strong> When updating a pass, the App communicates directly with the issuer's web service (as defined in the pass file) to download the latest version.</li>
                     </ul>
 
                     <h2>5. Data Security</h2>
-                    <p>Since all your data remains on your device and is never transmitted to us, you maintain complete control over your information. We recommend that you:</p>
                     <ul>
-                        <li>Use your device's built-in security features (PIN, fingerprint, face recognition)</li>
-                        <li>Keep your device's operating system updated</li>
-                        <li>Be cautious when adding passes from unknown sources</li>
+                        <li><strong>Local Storage:</strong> Your passes and personal data contained within them are stored securely on your device's internal storage.</li>
+                        <li><strong>No Personal Identifiers:</strong> We do not collect your name, email, phone number, or advertising ID.</li>
+                        <li><strong>Control:</strong> You can delete any pass at any time, which removes all associated data from your device.</li>
                     </ul>
 
                     <h2>6. Children's Privacy</h2>
-                    <p>Smart Passes Wallet does not collect any personal information from anyone, including children under the age of 13. Since we do not collect any data, there are no special provisions needed for children's privacy. The App is safe for users of all ages.</p>
+                    <p>Smart Passes Wallet does not knowingly collect personal information from children under the age of 13. The App is safe for general audiences.</p>
 
                     <h2>7. Your Rights</h2>
-                    <p>Since we do not collect any personal data, there is no personal information for us to access, modify, or delete. All data stored by the App is under your complete control on your device. You can:</p>
+                    <p>You maintain full control over your data:</p>
                     <ul>
-                        <li>Delete individual passes at any time within the App</li>
-                        <li>Clear all App data through your device settings</li>
-                        <li>Uninstall the App to remove all associated data from your device</li>
+                        <li><strong>Revoke Permissions:</strong> You can disable Location or Camera permissions at any time in your device settings (though some features like geofencing will stop working).</li>
+                        <li><strong>Delete Data:</strong> Uninstalling the App or deleting passes removes all local data.</li>
                     </ul>
 
-                    <h2>8. Changes to This Privacy Policy</h2>
-                    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last Updated" date. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your privacy.</p>
-                    <p>If we make any material changes to this policy, we will notify users through the App or by other appropriate means.</p>
+                    <h2>8. Changes to This Policy</h2>
+                    <p>We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will notify you of any significant changes through the App or this page.</p>
 
-                    <h2>9. Compliance with Google Play Requirements</h2>
-                    <p>This Privacy Policy is provided in compliance with Google Play Store requirements. We confirm that:</p>
-                    <ul>
-                        <li>This policy accurately describes our data practices</li>
-                        <li>The App's Data Safety section in Google Play accurately reflects that no user data is collected</li>
-                        <li>We will update this policy and the Data Safety section if our practices change</li>
-                    </ul>
-
-                    <h2>10. Contact Us</h2>
-                    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us at:</p>
+                    <h2>9. Contact Us</h2>
+                    <p>If you have questions about this Privacy Policy, please contact us at:</p>
                     <div class="glass-effect rounded-xl p-6 mt-4">
                         <p class="mb-2"><strong class="text-white">Smart Passes</strong></p>
-                        <p class="mb-2">Email: <a href="mailto:support@smartpasses.app" class="text-emerald-400 hover:text-emerald-300">support@smartpasses.app</a></p>
-                    </div>
-
-                    <h2>11. Summary</h2>
-                    <div class="glass-effect rounded-xl p-6 mt-4 border border-emerald-500/30">
-                        <p class="text-emerald-400 font-semibold mb-4">In Summary:</p>
-                        <ul>
-                            <li><strong class="text-white">We do NOT collect any personal data</strong></li>
-                            <li><strong class="text-white">We do NOT share any data with third parties</strong></li>
-                            <li><strong class="text-white">We do NOT track your usage or behavior</strong></li>
-                            <li><strong class="text-white">All your passes are stored locally on your device only</strong></li>
-                            <li><strong class="text-white">You have complete control over your data</strong></li>
-                        </ul>
+                        <p class="mb-2">Email: <a href="mailto:support@smartpasses.io" class="text-emerald-400 hover:text-emerald-300">support@smartpasses.io</a></p>
                     </div>
 
                 </div>
